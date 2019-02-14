@@ -1,0 +1,1 @@
+gcc -Wall -Wextra -Werror main.c ft_str.c ft_printf.c ft_char.c ft_atoi.c 
