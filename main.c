@@ -17,8 +17,8 @@ int		main(void)
  // ft_printf("me  :|%s|\n", NULL);
  //    printf("org :|%s|\n", NULL);
 
-  ft_printf("me  :|%s|\n", "Привіт!");
-     printf("org :|%s|\n", "Привіт!");
+  // ft_printf("me  :|%s|\n", "Привіт!");
+  //    printf("org :|%s|\n", "Привіт!");
 
   // ft_printf("me  :%-5.3s\n", s);
   //    printf("org :%-5.3s\n", s);
@@ -43,18 +43,89 @@ int		main(void)
      // ft_printf("me  :|%020s|\n", s);
      //    printf("org :|%20s|\n", s);
 
-     // ft_printf("me  :|%-020s|\n", s);
-     //    printf("org :|%-20s|\n", s);
+  
 
    // ft_printf("|%-07.5s|\t|%-02.5s|\t|%-020s|\t|%-0.5s|\t\n",A,A,A, "");
-      // printf("|%-7.5s|\t|%-2.5s|\t|%-20s|\t|%-.5s|\t\n",A,A,A, "");
+   //    printf("|%-7.5s|\t|%-2.5s|\t|%-20s|\t|%-.5s|\t\n",A,A,A, "");
+
+  // printf("original res - %d\n", printf("%20.10s\n", "qwerty"));
+  // printf("my res - %d\n", ft_printf("%20.10s\n", "qwerty"));
+//   printf("original res - %d\n", printf("%-20.10s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%-20.10s\n", "qwerty"));
+  // printf("original res - %d\n", printf("%s\n", NULL));
+  // printf("my res - %d\n", ft_printf("%s\n", NULL));
+//   printf("original res - %d\n", printf("%d\n", printf("")));
+// printf("my res - %d\n", printf("%d\n", ft_printf("")));
+//   printf("original res - %d\n", printf("%s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%s\n", "qwerty"));
+//   printf("original res - %d\n", printf("%3s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%3s\n", "qwerty"));
+//   printf("original res - %d\n", printf("%25s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%25s\n", "qwerty"));
+//   printf("original res - %d\n", printf("%s\n", "qwerty"));//undefined behavior
+// printf("my res - %d\n", ft_printf("%+s\n", "qwerty"));//undefined behavior
+//   printf("original res - %d\n", printf("%s\n", "qwerty"));//undefined behavior
+// printf("my res - %d\n", ft_printf("% s\n", "qwerty"));//undefined behavior
+//   printf("original res - %d\n", printf("%25s\n", "qwerty"));//undefined behavior
+// printf("my res - %d\n", ft_printf("%025s\n", "qwerty"));//undefined behavior
+//   printf("original res - %d\n", printf("%.3s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%.3s\n", "qwerty"));
+//   printf("original res - %d\n", printf("%25.3s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%25.3s\n", "qwerty"));
+//   printf("original res - %d\n", printf("%-25s\n", "qwerty"));
+// printf("my res - %d\n", ft_printf("%-25s\n", "qwerty"));
+//   printf("original res - %d\n", printf("text %s text %s\n", "first", "second"));
+// printf("my res - %d\n", ft_printf("text %s text %s\n", "first", "second"));
+
+   // ft_printf("me  :|%-020.*s|\n", 10, s);
+   //      printf("org :|%-20.*s|\n", 10, s);
+// printf("original res - %d\n", printf("text %15.3s text %*.*s\n", "first", 20, 4, "second"));
+// printf("my res - %d\n", ft_printf("text %15.3s text %*.*s\n", "first", 20, 4, "second"));
+
+
+
+
+
+
+//%%%%%%%%%
+    // printf("original res - %d\n", printf("1223456%%789\n"));
+    // printf("my res - %d\n", ft_printf("1223456%%789\n"));
+
+
+
 
 //ПОПЫТКА С ЮНИКОДОМ
   // setlocale(LC_ALL,  "");
-  // printf("org :|%s|\n", "Привет!");
-ft_printf("%s", "\xE2\x98\xA0\n");
+// printf("%s", "\xE2\x98\xA0\n");  //ЧЕРЕП
+// ft_printf("%s", "\xE2\x98\xA0\n");
 
+//   printf("original res - %d\n", printf("%ls\n", a));
+// printf("res - %d\n", ft_printf("%ls\n", a));
 
+  // printf("original res - %d\n", printf("%ls\n", L"абвгд"));
+// printf("res - %d\n", ft_printf("%ls\n", L"абвгд"));
+  // printf("original res - %d\n", printf("%15ls\n", L"абвгд"));
+// printf("res - %d\n", ft_printf("%15ls\n", L"абвгд"));
+//   printf("original res - %d\n", printf("%15ls\n", L"абвгд"));//undefined behavior
+// printf("res - %d\n", ft_printf("%015ls\n", L"абвгд"));//undefined behavior
+//   printf("original res - %d\n", printf("%ls\n", L"абвгд"));//undefined behavior
+// printf("res - %d\n", ft_printf("%+ls\n", L"абвгд"));//undefined behavior
+//   printf("original res - %d\n", printf("% ls\n", L"абвгд"));//undefined behavior
+// printf("res - %d\n", ft_printf("% ls\n", L"абвгд"));//undefined behavior
+//   printf("original res - %d\n", printf("%-15ls\n", L"абвгд"));
+// printf("res - %d\n", ft_printf("%-15ls\n", L"абвгд"));
+
+//   printf("original res - %d\n", printf("%.2ls\n", L"абвгд"));
+// printf("res - %d\n", ft_printf("%.2ls\n", L"абвгд"));
+
+//   printf("original res - %d\n", printf("%15.2ls\n", L"абвгд"));
+// printf("res - %d\n", ft_printf("%15.2ls\n", L"абвгд"));
+
+//   printf("original res - %d\n", printf("%-15.2ls\n", L"абвгд"));
+// printf("res - %d\n", ft_printf("%-15.2ls\n", L"абвгд"));
+
+//   printf("original res - %d\n", printf("asd %ls %S %s\n", L"𐱈র𐱈র", L"абв𐱈র𐱈র", "zxc"));
+// printf("my res - %d\n", ft_printf("asd %ls %S %s\n", L"𐱈র𐱈র", L"абв𐱈র𐱈র", "zxc"));
 
 
       /*
@@ -62,8 +133,21 @@ ft_printf("%s", "\xE2\x98\xA0\n");
        * */
 //
 //
-   // ft_printf("me: %c\n", &c);
+   ft_printf("me: %c\n", &c);
     // printf("org %f\n", 99.9999999);
+
+   // printf("|%-2c|\n", );
+
+  char a = ' ';
+  for (a = ' '; a <' ' + 60 ; a+=15)
+    printf("original res - %d\n", printf("|%-2c|\t|%-2c|\t|%-2c|", a, a+5,a+10));
+          printf("res - %d\n", ft_printf("|%-2c|\t|%-2c|\t|%-2c|", a, a+5,a+10));
+  
+  
+  // ft_printf("|%-2.3c|(%3d)\t|%-2.5c|(%3d)\t|%-2.0c|(%3d)", a, a, a+5,a+5,a+10,a+10);
+  // ft_printf("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
+  // ft_printf("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
+  // ft_printf("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|", 0,0,0,0,0,0,0,0,0);
 
 // system("leaks a.out");
     return (0);

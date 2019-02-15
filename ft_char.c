@@ -14,10 +14,10 @@
 
 int	ft_char(void *c, t_buff *p, t_flags *flag)
 {
-	char *a;
+	char s[2];
 
-    a = (char*)c;
-    flag->width = 0;
-    p->buff[p->i++] = *a;
+	s[0] = *((char*)c);
+	s[1] = '\0';
+	ft_str(s, p, flag);
 	return (0);
 }

@@ -72,17 +72,22 @@ int  checkflag(char **car, t_flags *flag)
     return (i);
 }
 
-int checktochnost(char **car, t_flags *flag)
+int checktochnost(char **car, t_flags *flag, va_list ap)
 {
    int i;
    char minicar[20];
 
    i = 0;
-   // printf("tochnost?? c = %c\n", **car);
    if (**car == '.')
    {
         flag->dot = 1;
         (*car)++;
+        if (**car == '*')
+        {
+            (*car)++;
+            flag->tochnost = va_arg(ap, int);
+            return (2);
+        }
         minicar[i++] = ' ';
        while (**car >= '0' && **car <= '9')
        {
@@ -92,9 +97,6 @@ int checktochnost(char **car, t_flags *flag)
    }
    minicar[i] = '\0';
    flag->tochnost = ft_atoi(minicar);
-   // printf("minicar=%s\n", minicar);
-   // printf("flag->dot = %d\n", flag->dot);
-   // printf("flag->tochnost = %d\n", flag->tochnost);
    return (i);
 }
 void    checkbuff(t_buff *p)
@@ -157,26 +159,35 @@ int checktype(t_flags *flag, char **car)
 
 int     checkall(va_list ap, t_buff *p, t_flags *flag)
 {
+    // printf("checkall\n");
     if (flag->s == 1)
-        ft_str(va_arg(ap, void*), p, flag);
+        return (ft_str(va_arg(ap, void*), p, flag));
     if (flag->c == 1)
-        ft_char(va_arg(ap, void*), p, flag);
-
+        return (ft_char(va_arg(ap, void*), p, flag));
+    if (flag->percent == 1)
+        return (ft_write_buff(p, "%"));
     return (0);
 }
 
-int checkwidth(t_flags *flag, char **car)
+int checkwidth(t_flags *flag, char **car, va_list ap)
 {
     int i;
     char minicar[20];
 
     i = 0;
+    if (**car == '*')
+    {
+        (*car)++;
+        flag->width = va_arg(ap, int);
+        return (1);
+    }
     while (**car >= '0' && **car <= '9')
     {
         minicar[i++] = **car;
         (*car)++;
     }
     minicar[i] = '\0';
+    // printf("%s\n", minicar);
     flag->width = ft_atoi((const char*)minicar);
     // printf("flag->width = %d\n", flag->width);//10
 
@@ -188,16 +199,23 @@ int		checkstr(va_list ap, char *car, t_buff *p)
     int k;
     // int i;
 
+    // printf("car = %s\n", car);
     // printf("1 c = %c\n", *car);
     car++;
     // printf("2 c = %c\n", *car);
     k = 0; //счетчик для смещения потом формата
     ft_bzero(&flag, sizeof(flag));
     k += checkflag(&car, &flag);
-    // придумать что-то для ширины
-    k += checkwidth(&flag, &car);
-    k += checktochnost(&car, &flag);
-    // надо что-то делать с размером
+    k += checkwidth(&flag, &car, ap);
+    k += checktochnost(&car, &flag, ap);
+    // // надо что-то делать с размером
+    // printf("flag->minus = %d\n", flag.minus);
+    // printf("flag->plus = %d\n", flag.plus);
+    // printf("flag->hash = %d\n", flag.hash);
+    // printf("flag->zero = %d\n", flag.zero);
+    // printf("flag->width = %d\n", flag.width);
+    // printf("flag->dot = %d\n", flag.dot);
+    // printf("flag->tochnost = %d\n", flag.tochnost);
 
     k += checktype(&flag, &car);
     
