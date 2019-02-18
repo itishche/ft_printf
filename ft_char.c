@@ -15,9 +15,20 @@
 int	ft_char(void *c, t_buff *p, t_flags *flag)
 {
 	char s[2];
-
-	s[0] = *((char*)c);
-	s[1] = '\0';
+	
+	if (c == NULL)
+	{
+		s[0] = 0;
+		s[1] = '\0';
+		// s[2] = '\0';
+	}
+	else
+	{
+		s[0] = (unsigned char)c;
+		s[1] = '\0';
+	}
+	if (flag->dot == 1 && flag->tochnost == 0)
+		flag->tochnost = 1;
 	ft_str(s, p, flag);
 	return (0);
 }

@@ -115,7 +115,7 @@ int ft_str(void *str, t_buff *p, t_flags *flag)
 		s = (char *)str;
 		len = ft_strlen(s);
 		if (len == 0)
-			return (0);
+			return (space(p, flag->width));
 	}
 	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0)
 			return (0);

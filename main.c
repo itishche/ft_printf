@@ -6,7 +6,7 @@ int		main(void)
     char *s;
     s = "123456789123";
     char c;
-    c = 'A';
+    c = ' ';
 
     /*
      * CHECK   STRING
@@ -133,18 +133,30 @@ int		main(void)
        * */
 //
 //
-   ft_printf("me: %c\n", &c);
+   // printf("org: %c\n", 'N');
+   // ft_printf("me: %c\n", 'N');
     // printf("org %f\n", 99.9999999);
 
    // printf("|%-2c|\n", );
 
-  char a = ' ';
-  for (a = ' '; a <' ' + 60 ; a+=15)
-    printf("original res - %d\n", printf("|%-2c|\t|%-2c|\t|%-2c|", a, a+5,a+10));
-          printf("res - %d\n", ft_printf("|%-2c|\t|%-2c|\t|%-2c|", a, a+5,a+10));
-  
-  
-  // ft_printf("|%-2.3c|(%3d)\t|%-2.5c|(%3d)\t|%-2.0c|(%3d)", a, a, a+5,a+5,a+10,a+10);
+//   char a = ' ';
+//   for (a = ' '; a <' ' + 60 ; a+=15)
+//   {
+//       printf("original res - %d\n", printf("|%-2c|\t|%-2c|\t|%-2c|", a, a+5,a+10)); 
+//       printf("res - %d\n", ft_printf("|%-2c|\t|%-2c|\t|%-2c|", a, a+5,a+10));
+// }
+// char a = ' ';
+// printf("a = %c\n", a);
+// printf("a+5 = %c\n", a+5);
+// printf("a+10 = %c\n", a+10);
+// ft_printf("ft_a = %c\n", a);
+// ft_printf("ft_a+5 = %c\n", a+5);
+// ft_printf("ft_a+10 = %c\n", a+10);
+
+  // printf("original res - %d\n", printf("|%-2.3c|\t|%-2.5c|\t|%-2.0c|",  a, a+5, a+10)); 
+        // printf("res - %d\n", ft_printf("|%-2.3c|\t|%-2.5c|\t|%-2.0c|",  a, a+5, a+10));
+printf("%.2c\n", NULL);  
+  ft_printf("%.2c\n", NULL);
   // ft_printf("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
   // ft_printf("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
   // ft_printf("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|", 0,0,0,0,0,0,0,0,0);

@@ -1,1 +1,2 @@
-gcc  main.c ft_str.c ft_printf.c ft_char.c ft_atoi.c minilib.c
+ make re
+ gcc main.c libftprintf.a && ./a.out
