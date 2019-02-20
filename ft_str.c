@@ -37,13 +37,15 @@ int ft_right_str(char *mas, t_buff *p, int size)
 	return (0);
 }
 
-char *ft_null(void)
+static	void	ft_null(char *s)
 {
-	char *s;
-	
-	s = ft_strnew(7);
-	s = "(null)";
-	return (s);
+	s[0] = '(';
+	s[1] = 'n';
+	s[2] = 'u';
+	s[3] = 'l';
+	s[4] = 'l';
+	s[5] = ')';
+	s[6] = '\0';
 }
 
 int ft_left_str_and_free(char *mas, t_buff *p, int k)
@@ -75,16 +77,11 @@ int	bla(char *s, t_buff *p, t_flags *flag)
 		k = flag->width - flag->tochnost + k + 1;
 	if (k == 0)
 		return(ft_write_buff_and_free(p, mas));
-	else
-	{
-		if (k < 0)
-			k = 0;
-		if (flag->minus == 0)
-			return (ft_right_str_and_free(mas, p, k));
-		if (flag->minus == 1)
-			return (ft_left_str_and_free(mas, p, k));
-	}
-	return (0);
+	if (k < 0)
+		k = 0;
+	if (flag->minus == 0)
+		return (ft_right_str_and_free(mas, p, k));
+	return (ft_left_str_and_free(mas, p, k));
 }
 
 int bla_bla(char *s, t_buff *p, t_flags *flag)
@@ -106,10 +103,12 @@ int bla_bla(char *s, t_buff *p, t_flags *flag)
 int ft_str(void *str, t_buff *p, t_flags *flag)
 {
 	char *s;
+	char fnull[7];
 	int len;
 
+	ft_null(fnull);
 	if (str == NULL)
-		s = ft_null();
+		s = fnull;
 	else
 	{
 		s = (char *)str;
@@ -122,9 +121,9 @@ int ft_str(void *str, t_buff *p, t_flags *flag)
 	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0)
 		return(space(p, flag->width));
 	if (flag->dot == 1 && flag->tochnost != 0)
-		return (bla(s, p, flag));	
+		bla(s, p, flag);	
 	else
-		return (bla_bla(s, p, flag));
+		bla_bla(s, p, flag);
 	checkbuff(p);
 	return (0);
 }

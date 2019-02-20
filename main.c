@@ -133,6 +133,9 @@ int		main(void)
        * */
 //
 //
+       printf("org:%5c\n", 42);
+    ft_printf("me :%5c\n", 42);
+        
    // printf("org: %c\n", 'N');
    // ft_printf("me: %c\n", 'N');
     // printf("org %f\n", 99.9999999);
@@ -155,8 +158,9 @@ int		main(void)
 
   // printf("original res - %d\n", printf("|%-2.3c|\t|%-2.5c|\t|%-2.0c|",  a, a+5, a+10)); 
         // printf("res - %d\n", ft_printf("|%-2.3c|\t|%-2.5c|\t|%-2.0c|",  a, a+5, a+10));
-printf("%.2c\n", NULL);  
-  ft_printf("%.2c\n", NULL);
+    // printf("original res - %d\n",printf("%c\n", NULL)); 
+    //     printf("res - %d\n",ft_printf("%c\n", NULL));
+  
   // ft_printf("|%+3c|(%3d)\t|%+3c|(%3d)\t|%+c|(%3d)", a, a, a+5, a+5, a+10, a+10);
   // ft_printf("|%3.4c|(%3d)\t|%+3.4c|(%3d)\t|%.4c|(%3d)", a, a, a+5, a+5, a+10, a+10);
   // ft_printf("|%-3c|\t|%3c|\t|%c|\t|%-03c|\t|%03c|\t|%.c|\t|%.5c|", 0,0,0,0,0,0,0,0,0);
