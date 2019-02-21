@@ -26,41 +26,46 @@ void	ft_bzero(void *str, size_t n)
 	}
 }
 
+
+
 int  checkflag(char **car, t_flags *flag)
 {
 	int i;
 
 	i = 0;
-	if (**car == '-')
-	{
-		flag->minus = 1;
-		(*car)++;
-		i++;
-	}
-	if (**car == '+')
-	{
-		flag->plus = 1;
-		(*car)++;
-		i++;
-	}
-	if (**car == '#')
-	{
-		flag->hash = 1;
-		(*car)++;
-		i++;
-	}
-	if (**car == ' ')
-	{
-		flag->space = 1;
-		(*car)++;
-		i++;
-	}
-	if (**car == '0')
-	{
-		flag->zero = 1;
-		(*car)++;
-		i++;
-	}
+	// if (ft_strchr("#0-+", **car) != NULL)
+	// {
+		if (**car == '-')
+		{
+			flag->minus = 1;
+			(*car)++;
+			i++;
+		}
+		if (**car == '+')
+		{
+			flag->plus = 1;
+			(*car)++;
+			i++;
+		}
+		if (**car == '#')
+		{
+			flag->hash = 1;
+			(*car)++;
+			i++;
+		}
+		if (**car == ' ')
+		{
+			flag->space = 1;
+			(*car)++;
+			i++;
+		}
+		if (**car == '0')
+		{
+			flag->zero = 1;
+			(*car)++;
+			i++;
+		}
+	// }
 	return (i);
 }
 
@@ -152,8 +157,13 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_str(va_arg(ap, void*), p, flag));
 	if (flag->c == 1)
 		return (ft_char(va_arg(ap, void*), p, flag));
+	if (flag->d == 1 || flag->i == 1)
+		return (ft_int(va_arg(ap, void*), p , flag));
 	if (flag->percent == 1)
-		return (ft_write_buff(p, "%"));
+	{
+		printf("23145678\n");
+		return (ft_char("%", p, flag));
+	}
 	return (0);
 }
 
@@ -173,12 +183,92 @@ int		checkwidth(t_flags *flag, char **car, va_list ap)
 	{
 		minicar[i++] = **car;
 		(*car)++;
-
 	}
 	minicar[i] = '\0';
 	flag->width = ft_atoi((const char*)minicar);
 	return (i);
 }
+
+// static	int	poshuk(const char *str, int symb)
+// {
+// 	int i;
+// 	int k;
+
+// 	i = 0;
+// 	k = 0;
+// 	while ((k == 0) && (str[i] != '\0'))
+// 	{
+// 		if (str[i] == symb)
+// 			k = 1;
+// 		i++;
+// 	}
+// 	return (k);
+// }
+
+// char		*ft_strchr(const char *str, int symb)
+// {
+// 	int i;
+// 	int k;
+
+// 	i = 0;
+// 	if (symb == '\0')
+// 		return ((char *)&str[ft_strlen(str)]);
+// 	k = poshuk(str, symb);
+// 	if (k == 1)
+// 	{
+// 		i = 0;
+// 		while (str[i] != symb)
+// 			i++;
+// 		return ((char *)&str[i]);
+// 	}
+// 	else
+// 		return (0);
+// }
+
+// int		checkmod(t_flags *flag, char **car, va_list ap, t_buff *p)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	if (ft_strchr("hljz", **car) != NULL)
+// 	{
+// 		i = 1;
+// 		if (**car == 'l')
+// 		{
+// 			(*car)++;
+// 			if (**car == 'l')
+// 			{
+// 				flag->ll = 1;
+// 				(*car)++;
+// 				i = 2;
+// 			}
+// 			else
+// 				flag->l = 1;
+// 		}
+// 		else if (**car == 'h')
+// 		{
+// 			(*car)++;
+// 			if (**car == 'h')
+// 			{
+// 				flag->hh = 1;
+// 				(*car)++;
+// 				i = 2;
+// 			}
+// 			else
+// 				flag->h = 1;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		while (ft_strchr("dDioOuUxXeEfFgGaAcCsSpn%", **car) == NULL)
+// 		{
+// 			i++;
+// 			p->buff[p->i++] = **car;
+// 			(*car)++;
+// 		}
+// 	}
+// 	return (i);
+// }
 
 int		checkstr(va_list ap, char *car, t_buff *p)
 {
@@ -191,6 +281,11 @@ int		checkstr(va_list ap, char *car, t_buff *p)
 	k += checkflag(&car, &flag);
 	k += checkwidth(&flag, &car, ap);
 	k += checktochnost(&car, &flag, ap);
+
+
+	// k += checkmod(&flag, &car, ap, p);
+    
+
     // printf("flag->minus = %d\n", flag.minus);
     // printf("flag->plus = %d\n", flag.plus);
     // printf("flag->hash = %d\n", flag.hash);
@@ -200,6 +295,7 @@ int		checkstr(va_list ap, char *car, t_buff *p)
     // printf("flag->tochnost = %d\n", flag.tochnost);
 	k += checktype(&flag, &car);
 	checkall(ap, p, &flag);
+	printf(" k = %d\n", k);
 	return (k);
 }
 
