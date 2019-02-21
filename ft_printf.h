@@ -90,6 +90,7 @@ int     ft_str(void *str, t_buff *p, t_flags *flag);
 int     ft_char(void *c, t_buff *p, t_flags *flag);
 int     ft_int(void *c, t_buff *p, t_flags *flag);
 
+char   *ft_strchr(const char *str, int symb);
 
 void    checkbuff(t_buff *p);
 void    ft_bzero(void *str, size_t n);

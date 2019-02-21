@@ -15,13 +15,15 @@ SRC		=	./ft_printf.c \
 			./ft_char.c \
 			./ft_atoi.c \
 			./ft_str.c \
-			./minilib.c
+			./minilib.c \
+			./ft_int.c
 
 OBJ 	= ./ft_printf.o \
 			./ft_char.o \
 			./ft_atoi.o \
 			./ft_str.o \
-			./minilib.o
+			./minilib.o \
+			./ft_int.o
 
 all: $(NAME)
 

@@ -172,10 +172,17 @@ int		main(void)
 //     printf("org:%5%\n", 42);
 //     ft_printf("me :%5%\n", 42);
 //        НЕ работает !!!!
+    // printf("% 5.4ys\n", "1234567890");
     //   printf("org:% 5ty %\n");
     // ft_printf("me :% 5ty %\n");
 
 
+
+    /*
+       * CHECK   INTEGER
+       * */
+       printf("org:%d\n", 42);
+    ft_printf("me :%d\n", 42);
 
 
 // system("leaks a.out");

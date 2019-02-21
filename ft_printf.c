@@ -28,13 +28,14 @@ void	ft_bzero(void *str, size_t n)
 
 
 
-int  checkflag(char **car, t_flags *flag)
+int		checkflag(char **car, t_flags *flag)
 {
-	int i;
+	int		i;
+	char	*s;
 
 	i = 0;
-	// if (ft_strchr("#0-+", **car) != NULL)
-	// {
+	if ((s = ft_strchr("#0-+", **car)) != NULL)
+	{
 		if (**car == '-')
 		{
 			flag->minus = 1;
@@ -65,7 +66,7 @@ int  checkflag(char **car, t_flags *flag)
 			(*car)++;
 			i++;
 		}
-	// }
+	}
 	return (i);
 }
 
@@ -130,10 +131,18 @@ int		checktype(t_flags *flag, char **car)
 		(*car)++;
 		flag->s = 1;
 	}
-	//else if (*car == 'd')
-	//	flag->d = 1;
-    //else if (*car == 'i')
-    //	flag->i = 1;
+	else if (*car == 'd')
+	{
+		flag->d = 1;
+		(*car)++;
+		i++;
+	}
+    else if (*car == 'i')
+    {
+		flag->i = 1;
+		(*car)++;
+		i++;
+	}
     //else if (*car == 'o')
     //	flag->o = 1;
     //else if (*car == 'u')
@@ -157,8 +166,9 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_str(va_arg(ap, void*), p, flag));
 	if (flag->c == 1)
 		return (ft_char(va_arg(ap, void*), p, flag));
-	if (flag->d == 1 || flag->i == 1)
+	if ((flag->d == 1 || flag->i == 1) && flag->l == 1)
 		return (ft_int(va_arg(ap, void*), p , flag));
+
 	if (flag->percent == 1)
 	{
 		printf("23145678\n");
@@ -179,7 +189,7 @@ int		checkwidth(t_flags *flag, char **car, va_list ap)
 		flag->width = va_arg(ap, int);
 		return (1);
 	}
-	while (**car >= '0' && **car <= '9')
+	while ((**car >= '0' && **car <= '9') || **car == ' ')
 	{
 		minicar[i++] = **car;
 		(*car)++;
@@ -189,86 +199,95 @@ int		checkwidth(t_flags *flag, char **car, va_list ap)
 	return (i);
 }
 
-// static	int	poshuk(const char *str, int symb)
-// {
-// 	int i;
-// 	int k;
+static	int	poshuk(const char *str, int symb)
+{
+	int i;
+	int k;
 
-// 	i = 0;
-// 	k = 0;
-// 	while ((k == 0) && (str[i] != '\0'))
-// 	{
-// 		if (str[i] == symb)
-// 			k = 1;
-// 		i++;
-// 	}
-// 	return (k);
-// }
+	i = 0;
+	k = 0;
+	while ((k == 0) && (str[i] != '\0'))
+	{
+		if (str[i] == symb)
+			k = 1;
+		i++;
+	}
+	return (k);
+}
 
-// char		*ft_strchr(const char *str, int symb)
-// {
-// 	int i;
-// 	int k;
+char		*ft_strchr(const char *str, int symb)
+{
+	int i;
+	int k;
 
-// 	i = 0;
-// 	if (symb == '\0')
-// 		return ((char *)&str[ft_strlen(str)]);
-// 	k = poshuk(str, symb);
-// 	if (k == 1)
-// 	{
-// 		i = 0;
-// 		while (str[i] != symb)
-// 			i++;
-// 		return ((char *)&str[i]);
-// 	}
-// 	else
-// 		return (0);
-// }
+	i = 0;
+	if (symb == '\0')
+		return ((char *)&str[ft_strlen((char*)str)]);
+	k = poshuk(str, symb);
+	if (k == 1)
+	{
+		i = 0;
+		while (str[i] != symb)
+			i++;
+		return ((char *)&str[i]);
+	}
+	else
+		return (0);
+}
 
-// int		checkmod(t_flags *flag, char **car, va_list ap, t_buff *p)
-// {
-// 	int		i;
+int		checkmod(t_flags *flag, char **car, va_list ap, t_buff *p)
+{
+	int		i;
+	char	*s;
 
-// 	i = 0;
-// 	if (ft_strchr("hljz", **car) != NULL)
-// 	{
-// 		i = 1;
-// 		if (**car == 'l')
-// 		{
-// 			(*car)++;
-// 			if (**car == 'l')
-// 			{
-// 				flag->ll = 1;
-// 				(*car)++;
-// 				i = 2;
-// 			}
-// 			else
-// 				flag->l = 1;
-// 		}
-// 		else if (**car == 'h')
-// 		{
-// 			(*car)++;
-// 			if (**car == 'h')
-// 			{
-// 				flag->hh = 1;
-// 				(*car)++;
-// 				i = 2;
-// 			}
-// 			else
-// 				flag->h = 1;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		while (ft_strchr("dDioOuUxXeEfFgGaAcCsSpn%", **car) == NULL)
-// 		{
-// 			i++;
-// 			p->buff[p->i++] = **car;
-// 			(*car)++;
-// 		}
-// 	}
-// 	return (i);
-// }
+	i = 0;
+	if ((s = ft_strchr("hljzL", **car)) != NULL)
+	{
+		i = 1;
+		if (**car == 'L')
+		{
+	 		(*car)++;
+			flag->L = 1;
+		}
+		if (**car == 'l')
+		{
+			(*car)++;
+			if (**car == 'l')
+			{
+				flag->ll = 1;
+				(*car)++;
+				i = 2;
+			}
+			else
+				flag->l = 1;
+		}
+		else if (**car == 'h')
+		{
+			(*car)++;
+			if (**car == 'h')
+			{
+				flag->hh = 1;
+				(*car)++;
+				i = 2;
+			}
+			else
+				flag->h = 1;
+		}
+	}
+	// else
+	// {
+	// 	printf("else in checkmod\n");
+	// 	(*car)++;
+	// 	while ((s = ft_strchr("dDioOuUxXeEfFgGaAcCsSpn%", **car)) == NULL)
+	// 	{
+	// 		i++;
+	// 		p->buff[p->i++] = **car;
+	// 		(*car)++;
+	// 	}
+	// }
+	
+	return (i);
+}
 
 int		checkstr(va_list ap, char *car, t_buff *p)
 {
@@ -280,10 +299,11 @@ int		checkstr(va_list ap, char *car, t_buff *p)
 	ft_bzero(&flag, sizeof(flag));
 	k += checkflag(&car, &flag);
 	k += checkwidth(&flag, &car, ap);
+
 	k += checktochnost(&car, &flag, ap);
 
 
-	// k += checkmod(&flag, &car, ap, p);
+	k += checkmod(&flag, &car, ap, p);
     
 
     // printf("flag->minus = %d\n", flag.minus);
