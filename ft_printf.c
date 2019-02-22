@@ -36,7 +36,7 @@ int		checkflag(char **car, t_flags *flag)
 	i = 0;
 	if ((s = ft_strchr("#0-+ ", **car)) == NULL)
 		return (i);
-	while (**car < 49 &&)
+	while (**car < 49 && **car >=32 )
 	{
 		if (**car == '#')
 		{
@@ -44,25 +44,25 @@ int		checkflag(char **car, t_flags *flag)
 			(*car)++;
 			i++;
 		}
-		if (**car == ' ')
+		else if (**car == ' ')
 		{
 			flag->space = 1;
 			(*car)++;
 			i++;
 		}
-		if (**car == '0')
+		else if (**car == '0')
 		{
 			flag->zero = 1;
 			(*car)++;
 			i++;
 		}
-		if (**car == '+')
+		else if (**car == '+')
 		{
 			flag->plus = 1;
 			(*car)++;
 			i++;
 		}
-		if (**car == '-')
+		else if (**car == '-')
 		{
 			flag->minus = 1;
 			(*car)++;
