@@ -34,20 +34,10 @@ int		checkflag(char **car, t_flags *flag)
 	char	*s;
 
 	i = 0;
-	if ((s = ft_strchr("#0-+", **car)) != NULL)
+	if ((s = ft_strchr("#0-+ ", **car)) == NULL)
+		return (i);
+	while (**car < 49 &&)
 	{
-		if (**car == '-')
-		{
-			flag->minus = 1;
-			(*car)++;
-			i++;
-		}
-		if (**car == '+')
-		{
-			flag->plus = 1;
-			(*car)++;
-			i++;
-		}
 		if (**car == '#')
 		{
 			flag->hash = 1;
@@ -63,6 +53,18 @@ int		checkflag(char **car, t_flags *flag)
 		if (**car == '0')
 		{
 			flag->zero = 1;
+			(*car)++;
+			i++;
+		}
+		if (**car == '+')
+		{
+			flag->plus = 1;
+			(*car)++;
+			i++;
+		}
+		if (**car == '-')
+		{
+			flag->minus = 1;
 			(*car)++;
 			i++;
 		}
@@ -131,18 +133,18 @@ int		checktype(t_flags *flag, char **car)
 		(*car)++;
 		flag->s = 1;
 	}
-	else if (*car == 'd')
+	else if (**car == 'd' || **car == 'i')
 	{
 		flag->d = 1;
 		(*car)++;
 		i++;
 	}
-    else if (*car == 'i')
-    {
-		flag->i = 1;
-		(*car)++;
-		i++;
-	}
+ //    else if (**car == 'i')
+ //    {
+	// 	flag->i = 1;
+	// 	(*car)++;
+	// 	i++;
+	// }
     //else if (*car == 'o')
     //	flag->o = 1;
     //else if (*car == 'u')
@@ -166,12 +168,12 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_str(va_arg(ap, void*), p, flag));
 	if (flag->c == 1)
 		return (ft_char(va_arg(ap, void*), p, flag));
-	if ((flag->d == 1 || flag->i == 1) && flag->l == 1)
+	if (flag->d == 1)
 		return (ft_int(va_arg(ap, void*), p , flag));
 
 	if (flag->percent == 1)
 	{
-		printf("23145678\n");
+		
 		return (ft_char("%", p, flag));
 	}
 	return (0);
@@ -306,16 +308,16 @@ int		checkstr(va_list ap, char *car, t_buff *p)
 	k += checkmod(&flag, &car, ap, p);
     
 
-    // printf("flag->minus = %d\n", flag.minus);
-    // printf("flag->plus = %d\n", flag.plus);
+    printf("flag->minus = %d\n", flag.minus);
+    printf("flag->plus = %d\n", flag.plus);
     // printf("flag->hash = %d\n", flag.hash);
-    // printf("flag->zero = %d\n", flag.zero);
-    // printf("flag->width = %d\n", flag.width);
+    printf("flag->zero = %d\n", flag.zero);
+    printf("flag->width = %d\n", flag.width);
     // printf("flag->dot = %d\n", flag.dot);
     // printf("flag->tochnost = %d\n", flag.tochnost);
 	k += checktype(&flag, &car);
 	checkall(ap, p, &flag);
-	printf(" k = %d\n", k);
+	// printf(" k = %d\n", k);
 	return (k);
 }
 

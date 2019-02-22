@@ -181,10 +181,42 @@ int		main(void)
     /*
        * CHECK   INTEGER
        * */
-       printf("org:%d\n", 42);
-    ft_printf("me :%d\n", 42);
+     //     ++++++    всегда указывает знак (плюс или минус) для выводимого десятичного числового значения.В отсутствие этого знака знак только для отрицательных чисел
+    //   printf("original res - %d\n", );
+    // printf("res - %d\n", );
+    //  printf("original res - %d\n", printf("org:%20d\n", 42));
+    // printf("res - %d\n", ft_printf("me :%20d\n", 42));//PАБОТАЕТ
 
+ // printf("original res - %d\n", printf("org:%-20d\n", 42));
+ //    printf("res - %d\n", ft_printf("me :%-20d\n", 42));//PАБОТАЕТ
 
+ // printf("original res - %d\n", printf("org:%+20d\n", 42));
+ //    printf("res - %d\n", ft_printf("me :%+20d\n", 42));
+   
+     printf("original res - %d\n",  printf("%-+20d\n", 42));
+    printf("res - %d\n",  ft_printf("%-+20d\n", 42));
+    //    //;
+    //  printf("original res - %d\n", );
+    // printf("res - %d\n", );
+    //    // printf("org:%20d\n", -42);
+    //  printf("original res - %d\n", );
+    // printf("res - %d\n", );
+       // printf("org:%-20d\n", -42);
+       // printf("org:%+20d\n", -42);
+       // printf("org:%+-20d\n", -42);
+       // printf("org:%0+20d\n", -42);//заполняет нулями по ширине и минус ставит на первое место, а выравнивание по правому краю
+       // printf("org:%0+-20d\n", -42);//минус отменяет плюс, выравнивание по левому краю
+       // printf("org:%0+20d\n", 42);
+       // printf("org:%0+-20d\n", 42);
+    // printf("org:%0-20d\n", -42);
+   
+
+// printf("%d", -42);
+// printf("before %d after", 42);
+// printf("%d%d%d%d%d", 1, -2, 3, -4, 5);
+// printf("a%db%dc%dd", 1, -2, 3);
+// printf("%d", INT_MAX);
+// printf("%d", INT_MIN);
 // system("leaks a.out");
     return (0);
 }
