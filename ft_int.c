@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int 	number_of_digits(long long int n)
+static int 	number_of_digits(long long int n)
 {
 	int count;
 	long long int n2;
@@ -34,7 +34,7 @@ int 	number_of_digits(long long int n)
 	return(count + 1);
 }
 
-char	*my_putnbr(long long int n)
+static char	*my_putnbr(long long int n)
 {
 	int sign;
 	char *s;
@@ -80,15 +80,18 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 	s = my_putnbr(c);
 	sign = ((c < 0) ? '-' : '+');
 	kdigit = ft_strlen(s);	
-	if (flag->plus == 1 || sign == '-')
-		flag->width--;
-	k = flag->width - kdigit;
-	if (k < 0)
-		k = 0;
+	// if (flag->plus == 1 || sign == '-')
+	// 	flag->width--;
+	(flag->plus == 1 || sign == '-') ? flag->width-- : 0;
+	// k = flag->width - kdigit;
+	// if (k < 0)
+	// 	k = 0;
+	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
 	if (flag->zero == 0)
 	{
-		if (flag->minus == 0)
-			space(p, k);
+		// if (flag->minus == 0)
+		// 	space(p, k);
+		flag->minus == 0 ? space(p, k) : 0;
 		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
 			p->buff[p->i++] = sign;
 	}
@@ -98,11 +101,11 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 			p->buff[p->i++] = sign;
 		if (flag->minus == 0)
 			fzero(p, k);
-		//флаг ноль игрнорируется, если у нас есть флаг минус и ставятся пробелы
 	}
 	ft_write_buff_and_free(p, s);
-	if (flag->minus == 1)
-		space(p, k);
+	flag->minus == 1 ? space(p, k) : 0;
+	// if (flag->minus == 1)
+	// 	space(p, k);
 	return (0);
 }
 

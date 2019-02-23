@@ -310,6 +310,15 @@ int		main(void)
 
 // printf("%hd", SHRT_MIN);
 // ;
+/*
+*
+*test_u
+*
+*/
+
+    printf("%u\n", 42);
+    ft_printf("%u\n", 42);
+
 // system("leaks a.out");
     return (0);
 }
