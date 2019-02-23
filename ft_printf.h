@@ -98,7 +98,13 @@ int     ft_printf(const char *str, ...);
 int     ft_atoi(const char *str);
 int     ft_str(void *str, t_buff *p, t_flags *flag);
 int     ft_char(void *c, t_buff *p, t_flags *flag);
-int     ft_int(void *c, t_buff *p, t_flags *flag);
+int     ft_int(int c, t_buff *p, t_flags *flag);
+int     ft_l_int(long int c, t_buff *p, t_flags *flag);
+int     ft_ll_int(long long int c, t_buff *p, t_flags *flag);
+int     ft_hh_int(signed char c, t_buff *p, t_flags *flag);
+int     ft_h_int(short int c, t_buff *p, t_flags *flag);
+
+
 
 char   *ft_strchr(const char *str, int symb);
 void    ft_bzero(void *str, size_t n);

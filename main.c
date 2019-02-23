@@ -1,8 +1,10 @@
 #include "ft_printf.h"
-
+#include <limits.h>
 int		main(void)
 {
 
+//   printf("original res - %d\n", );
+    // printf("res - %d\n", );
     char *s;
     s = "123456789123";
     char c;
@@ -193,30 +195,121 @@ int		main(void)
  // printf("original res - %d\n", printf("org:%+20d\n", 42));
  //    printf("res - %d\n", ft_printf("me :%+20d\n", 42));
    
-     printf("original res - %d\n",  printf("%-+20d\n", 42));
-    printf("res - %d\n",  ft_printf("%-+20d\n", 42));
+    //  printf("original res - %d\n",  printf("%-+20d\n", 42));
+    // printf("res - %d\n",  ft_printf("%-+20d\n", 42));
     //    //;
-    //  printf("original res - %d\n", );
-    // printf("res - %d\n", );
-    //    // printf("org:%20d\n", -42);
-    //  printf("original res - %d\n", );
-    // printf("res - %d\n", );
-       // printf("org:%-20d\n", -42);
-       // printf("org:%+20d\n", -42);
-       // printf("org:%+-20d\n", -42);
-       // printf("org:%0+20d\n", -42);//заполняет нулями по ширине и минус ставит на первое место, а выравнивание по правому краю
-       // printf("org:%0+-20d\n", -42);//минус отменяет плюс, выравнивание по левому краю
-       // printf("org:%0+20d\n", 42);
-       // printf("org:%0+-20d\n", 42);
-    // printf("org:%0-20d\n", -42);
-   
+    //  printf("original res - %d\n", printf("%20d\n", -42));
+    // printf("res - %d\n", ft_printf("%20d\n", -42));
+    //    // ;
 
-// printf("%d", -42);
-// printf("before %d after", 42);
-// printf("%d%d%d%d%d", 1, -2, 3, -4, 5);
-// printf("a%db%dc%dd", 1, -2, 3);
-// printf("%d", INT_MAX);
-// printf("%d", INT_MIN);
+    //  printf("original res - %d\n",  printf("%-20d\n", -42));//WORK
+    // printf("res - %d\n", ft_printf("%-20d\n", -42));
+
+    //      printf("original res - %d\n", printf("%+20d\n", -42));//WORK
+    // printf("res - %d\n", printf("%+20d\n", -42));
+       // ;
+
+    //   printf("original res - %d\n", printf("%+-20d\n", -42));//WORK
+    // printf("res - %d\n", printf("%+-20d\n", -42));
+       // ;
+
+    //   printf("original res - %d\n", printf("org:%0+20d\n", -42));//WORK
+    // printf("res - %d\n", ft_printf("org:%0+20d\n", -42));
+       // ;//заполняет нулями по ширине и минус ставит на первое место, а выравнивание по правому краю
+       
+  // printf("original res - %d\n", printf("org:%0+-20d\n", -42));//WORK
+  //   printf("res - %d\n", ft_printf("org:%0+-20d\n", -42));
+       // ;//минус отменяет плюс, выравнивание по левому краю
+      
+  // printf("original res - %d\n", printf("org:%0+20d\n", 42));//WORK
+  //   printf("res - %d\n", ft_printf("org:%0+20d\n", 42));
+       // ;
+      
+  // printf("original res - %d\n", printf("org:%0+-20d\n", 42));//WORK
+  //   printf("res - %d\n", ft_printf("org:%0+-20d\n", 42));
+       // ;
+    
+  // printf("original res - %d\n", printf("org:%0-20d\n", -42));//WORK
+  //   printf("res - %d\n", ft_printf("org:%0-20d\n", -42));
+    // printf("org:%0-20d\n", -42);
+    //  printf("original res - %d\n", printf("%d", -42));//WORK
+    // printf("res - %d\n", ft_printf("%d", -42));
+   // printf("original res - %d\n", printf("before %d after", 42));//WORK
+   //  printf("res - %d\n", ft_printf("before %d after", 42));
+
+    //    printf("original res - %d\n", printf("%d%d%d%d%d", 1, -2, 3, -4, 5));//WORK
+    // printf("res - %d\n", ft_printf("%d%d%d%d%d", 1, -2, 3, -4, 5));
+
+
+    //    printf("original res - %d\n", printf("a%db%dc%dd", 1, -2, 3));//WORK
+    // printf("res - %d\n", ft_printf("a%db%dc%dd", 1, -2, 3));
+// ;
+
+//        printf("original res - %d\n", printf("%d", INT_MAX));//WORK
+//     printf("res - %d\n", ft_printf("%d", INT_MAX));
+// // ;
+
+    //    printf("original res - %d\n", printf("%d", INT_MIN));
+    // printf("res - %d\n", ft_printf("%d", INT_MIN));
+
+
+/*
+*
+*test_ld
+*
+*/
+  // printf("original res - %d\n", printf("%ld%ld", 0, 42));//WORK
+  //   printf("res - %d\n", ft_printf("%ld%ld", 0, 42));
+
+  // printf("original res - %d\n", printf("%ld", (long)INT_MAX + 1));// wOrk!!!!
+  //   printf("res - %d\n", ft_printf("%ld", (long)INT_MAX + 1));
+// printf("%ld\n", 2147483648);
+// ft_printf("%ld\n", 2147483648);
+
+
+
+
+
+
+
+
+
+  // printf("original res - %d\n", printf("%ld", (long)INT_MIN - 1));//WORK
+  //   printf("res - %d\n", ft_printf("%ld", (long)INT_MIN - 1));
+// ;
+  // printf("original res - %d\n", printf("%ld", LONG_MAX));//WORK
+  //   printf("res - %d\n",  ft_printf("%ld", LONG_MAX));
+// // ;
+//   printf("original res - %d\n",printf("%ld", LONG_MIN) );//WORK
+//     printf("res - %d\n",ft_printf("%ld", LONG_MIN) );
+// printf("%ld", LONG_MIN);
+/*
+*
+*test_lld
+*
+*/
+// printf("%lld%lld\n", 0, 42);//WORK
+// ft_printf("%lld%lld\n", 0, 42);
+
+// printf("%lld\n", LLONG_MAX);//WORK
+// ft_printf("%lld\n", LLONG_MAX);
+
+// printf("%lld", LLONG_MIN);//WORK
+// ft_printf("%lld", LLONG_MIN);
+/*
+*
+*test_Hd
+*
+*/
+
+// printf("%hd%hd\n", (short int)0, (short int)42);//WORK
+// ft_printf("%hd%hd\n", (short int)0, (short int)42);
+
+// printf("%hd\n", SHRT_MAX);//WORK
+// ft_printf("%hd\n", SHRT_MAX);
+
+// printf("%hd", SHRT_MIN);
+// ;
 // system("leaks a.out");
     return (0);
 }
