@@ -30,17 +30,6 @@ typedef struct s_buff
     int count;
 }               t_buff;
 
-
-// typedef struct  s_int
-// {
-//     int             i;
-//     long int        li;
-//     long long int   lli;
-//     short int       hi;
-//     signed char     hhi;
-
-// }               t_int;
-
 typedef struct s_flags
 {
     /*
@@ -114,7 +103,7 @@ int     ft_write_buff(t_buff *p, char *s);
 int     ft_strlen(char *str);
 void    ft_strcat(t_buff *p, const char *s2);
 
-int ft_write_buff_and_free(t_buff *p, char *s);
+int     ft_write_buff_and_free(t_buff *p, char *s);
 
 char    *ft_strnew(size_t size);
 
