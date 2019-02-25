@@ -32,6 +32,8 @@ static char	*my_putnbr(unsigned long long n)
 	return (s);
 }
 
+
+
 int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 {
 	char	*s;
@@ -41,11 +43,14 @@ int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 	s = my_putnbr(c);
 	kdigit = ft_strlen(s);	
 	flag->plus == 1 ? flag->width-- : 0;
-	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
+	k = flag->width - kdigit;
+	if (k < 0)
+		k = 0;
+		// k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
 	if (flag->zero == 0)
 	{
 		flag->minus == 0 ? space(p, k) : 0;
-		if ((flag->plus == 1))
+		if (flag->plus == 1)
 			p->buff[p->i++] = '+';
 	}
 	else
@@ -59,11 +64,46 @@ int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 	return (0);
 }
 
-int		ft_u(unsigned char c, t_buff *p, t_flags *flag)
+int		ft_hh_u(unsigned char c, t_buff *p, t_flags *flag)
 {
 	unsigned long long z;
 	
-	printf("u\n");
+	z = (unsigned long long)c;
+	check_u(p, flag, z);
+	return (0);
+}
+
+int		ft_h_u(unsigned short int c, t_buff *p, t_flags *flag)
+{
+	unsigned long long z;
+	
+	z = (unsigned long long)c;
+	check_u(p, flag, z);
+	return (0);
+}
+
+int		ft_ll_u(unsigned long long c, t_buff *p, t_flags *flag)
+{
+	unsigned long long z;
+	
+	z = c;
+	check_u(p, flag, z);
+	return (0);
+}
+
+int		ft_l_u(unsigned long int c, t_buff *p, t_flags *flag)
+{
+	unsigned long long z;
+	
+	z = (unsigned long long)c;
+	check_u(p, flag, z);
+	return (0);
+}
+
+int		ft_u(unsigned int c, t_buff *p, t_flags *flag)
+{
+	unsigned long long z;
+	
 	z = (unsigned long long)c;
 	check_u(p, flag, z);
 	return (0);

@@ -25,7 +25,6 @@ static int 	number_of_digits(long long int n)
 	}
 	else
 		n2 = ((n < 0) ? (n * (-1)) : n);
-	printf("new n2 = %lld\n", n2);
 	while (n2 / 10 > 0)
 	{
 		count++;
@@ -79,33 +78,31 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 
 	s = my_putnbr(c);
 	sign = ((c < 0) ? '-' : '+');
-	kdigit = ft_strlen(s);	
-	// if (flag->plus == 1 || sign == '-')
-	// 	flag->width--;
+	kdigit = ft_strlen(s);
 	(flag->plus == 1 || sign == '-') ? flag->width-- : 0;
-	// k = flag->width - kdigit;
-	// if (k < 0)
-	// 	k = 0;
 	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
 	if (flag->zero == 0)
 	{
-		// if (flag->minus == 0)
-		// 	space(p, k);
 		flag->minus == 0 ? space(p, k) : 0;
 		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
 			p->buff[p->i++] = sign;
 	}
 	else
 	{
+
 		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
 			p->buff[p->i++] = sign;
-		if (flag->minus == 0)
+		// if (flag->tochnost >= kdigit && flag->space == 1)
+		// {
+		// 	space(p, k - (flag->tochnost - kdigit));
+		// 	fzero(p, flag->tochnost - kdigit);
+		// }
+		// else 
+			if (flag->minus == 0)
 			fzero(p, k);
 	}
 	ft_write_buff_and_free(p, s);
 	flag->minus == 1 ? space(p, k) : 0;
-	// if (flag->minus == 1)
-	// 	space(p, k);
 	return (0);
 }
 
@@ -113,7 +110,6 @@ int		ft_hh_int(signed char c, t_buff *p, t_flags *flag)
 {
 	long long int z;
 
-	printf("signed char\n");
 	z = (long long int)c;
 	check_int(p, flag, z);
 	return (0);
@@ -123,7 +119,6 @@ int		ft_h_int(short int c, t_buff *p, t_flags *flag)
 {
 	long long int z;
 
-	printf("short int\n");
 	z = (long long int)c;
 	check_int(p, flag, z);
 	return (0);
@@ -132,7 +127,6 @@ int		ft_h_int(short int c, t_buff *p, t_flags *flag)
 int		ft_ll_int(long long int c, t_buff *p, t_flags *flag)
 {
 
-	printf("long long int\n");
 	check_int(p, flag, c);
 	return (0);
 }
@@ -141,7 +135,6 @@ int		ft_l_int(long int c, t_buff *p, t_flags *flag)
 {
 	long long int z;
 
-	printf("long int\n");
 	z = (long long int)c;
 	check_int(p, flag, z);
 	return (0);
@@ -151,7 +144,6 @@ int		ft_int(int c, t_buff *p, t_flags *flag)
 {
 	long long int z;
 	
-	printf("int\n");
 	z = (long long int)c;
 	check_int(p, flag, z);
 	return (0);

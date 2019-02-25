@@ -314,10 +314,253 @@ int		main(void)
 *
 *test_u
 *
-*/
+// */
 
-    printf("%u\n", 42);
-    ft_printf("%u\n", 42);
+//     printf("%u\n", 42);
+//     ft_printf("%u\n", 42);
+
+
+// ft_printf("m%s", "abc");
+// ft_printf("m111%s333", "222");
+// ft_printf("m%s333", "222");
+// ft_printf("m111%s", "222");
+// ft_printf("m{%s}", 0);
+// ft_printf("m{%s}\n", "");
+// printf("o%s", "abc");
+// printf("o111%s333", "222");
+// printf("o%s333", "222");
+// printf("o111%s", "222");
+// printf("o{%s}", 0);
+// printf("o{%s}\n", "");
+
+//     printf("111%s333%s555", "222", "444");
+//     printf("111%s333%s555%saaa%sccc",
+//     "222", "444", "666", "bbb");
+//     printf("%s%s%s%s%s\n",
+//     "1", "2", "3", "4", "5");
+// ft_printf("111%s333%s555", "222", "444");
+// ft_printf("111%s333%s555%saaa%sccc",
+//     "222", "444", "666", "bbb");
+// ft_printf("%s%s%s%s%s\n",
+//     "1", "2", "3", "4", "5");
+
+#include <limits.h>
+// printf("%i", 42);
+// printf("%i", -42);
+// printf("before %i after", 42);
+// printf("%i%i%i%i%i",
+//     1, -2, 3, -4, 5);
+// printf("a%ib%ic%id",
+//     1, -2, 3);
+// printf("%i", INT_MAX);
+// printf("%i\n", INT_MIN);
+
+// ft_printf("%i", 42);
+// ft_printf("%i", -42);
+// ft_printf("before %i after", 42);
+// ft_printf("%i%i%i%i%i",
+//     1, -2, 3, -4, 5);
+// ft_printf("a%ib%ic%id",
+//     1, -2, 3);
+// ft_printf("%i", INT_MAX);
+// ft_printf("%i\n", INT_MIN);
+
+
+// printf("%u", 42);
+// printf("before %u after", 42);
+// printf("a%ub%uc%ud", 0, 55555, 100000);
+// printf("%u\n", UINT_MAX);
+
+
+// ft_printf("%u", 42);
+// ft_printf("before %u after", 42);
+// ft_printf("a%ub%uc%ud", 0, 55555, 100000);
+// ft_printf("%u\n", UINT_MAX);
+
+// printf("o{%10d}", 42);
+// printf("{%4d}", 10000);
+// printf("{%30d}", 10000);
+// printf("{%10d}", -42);
+// printf("{%3c}", 0);
+    // ft_printf("m{%10d}", 42);
+// ft_printf("{%4d}", 10000);
+// ft_printf("{%30d}", 10000);
+// ft_printf("{%10d}", -42);
+// ft_printf("{%3c}", 0);
+
+// printf("{m%-10d}", 42);
+// // printf("{%-4d}", 10000);
+// // printf("{%-30d}\n", 10000);
+
+// // ft_printf("{o%-10d}", 42);
+// // ft_printf("{%-4d}", 10000);
+// // ft_printf("{%-30d}\n", 10000);
+// printf("o{%010d}", 42);
+// printf("{%010d}", -42);
+// printf("{%04d}", 10000);
+// printf("{%030d}", 10000);
+// printf("{%03c}", 0);
+// printf("{%05s}\n", "abc");
+// ft_printf("m{%010d}", 42);
+// ft_printf("{%010d}", -42);
+// ft_printf("{%04d}", 10000);
+// ft_printf("{%030d}", 10000);
+// ft_printf("{%03c}", 0);
+// ft_printf("{%05s}\n", "abc");
+
+// printf("0%+d", 42);
+// printf("%+d", -42);
+// printf("%+i", 42);
+// printf("%+i", -42);
+// printf("%+c", 0);
+// printf("[%+s]", 0);
+// printf("[%+s]\n", "(null)");
+
+// ft_printf("m%+d", 42);
+// ft_printf("%+d", -42);
+// ft_printf("%+i", 42);
+// ft_printf("%+i", -42);
+// ft_printf("%+c", 0);
+// ft_printf("[%+s]", 0);
+// ft_printf("[%+s]\n", "(null)");
+
+
+
+
+
+printf("o%.4d\n", 42);ft_printf("m%.4d\n", 42); //У МЕНЯ НЕ ВЫВОДЯТСЯ НУЛИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// printf("%.4d", 424242);
+// printf("%.4d\n", -424242);
+
+// ft_printf("%.4d", 424242);
+// ft_printf("%.4d\n", -424242);
+
+
+
+
+
+// printf("o%15.4d\n", 42);ft_printf("m%15.4d\n", 42);//У МЕНЯ НЕ ВЫВОДЯТСЯ НУЛИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// нужно подстроить нули под точность!!!!!!
+
+
+
+// printf("o%15.4d\n", 424242);ft_printf("m%15.4d\n", 424242);
+// printf("o%8.4d\n", 424242424); ft_printf("m%8.4d\n", 424242424);
+
+
+// printf("o%15.4d\n", -42); ft_printf("m%15.4d\n", -42);
+// printf("o%15.4d\n", -424242);ft_printf("m%15.4d\n", -424242);
+// printf("o%8.4d\n", -424242424);ft_printf("m%8.4d\n", -424242424);
+// printf("o%4.15d\n", 42);ft_printf("m%4.15d\n", 42);
+// printf("o%4.15d\n", 424242);ft_printf("m%4.15d\n", 424242);
+// printf("o%4.8d\n", 424242424);ft_printf("m%4.8d\n", 424242424);
+// printf("o%4.15d\n", -42);ft_printf("m%4.15d\n", -42);
+// printf("o%4.15d\n", -424242);ft_printf("m%4.15d\n", -424242);
+// printf("o%4.8d\n", -424242424);ft_printf("m%4.8d\n", -424242424);
+// printf("o%.d, %.0d\n", 0, 0);ft_printf("m%.d, %.0d\n", 0, 0);
+// printf("o%.10d\n", -42);ft_printf("m%.10d\n", -42);
+// printf("o%.4i\n", 42);ft_printf("m%.4i\n", 42);
+// printf("o%15.4i\n", 42); ft_printf("m%15.4i\n", 42);
+// printf("o%4.15i\n", 42); ft_printf("m%4.15i\n", 42);
+// printf("o%.i, %.0i\n", 0, 0); ft_printf("m%.i, %.0i\n", 0, 0);
+
+
+
+// printf("o%.4u\n", 42);ft_printf("m%.4u\n", 42);
+// printf("o%.4u\n", 424242);ft_printf("m%.4u\n", 424242);
+// printf("o%15.4u\n", 42);ft_printf("m%15.4u\n", 42);
+// printf("o%15.4u\n", 424242);ft_printf("m%15.4u\n", 424242);
+// printf("o%8.4u\n", 424242424);ft_printf("m%8.4u\n", 424242424);
+// printf("o%4.15u\n", 42);ft_printf("m%4.15u\n", 42);
+// printf("o%4.15u\n", 424242);ft_printf("m%4.15u\n", 424242);
+// printf("o%4.8u\n", 424242424);ft_printf("m%4.8u\n", 424242424);
+// printf("o%.u, %.0u\n", 0, 0);ft_printf("m%.u, %.0u\n", 0, 0);
+
+
+
+
+
+
+
+
+
+
+//СДЕЛАТЬ РАЗБОРКУ С ФЛАГОМ SPACE  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// printf("0% d", 9999);
+// printf("% d", -9999);
+// printf("% i", 9999);
+// printf("% i", -9999);
+// printf("% u", 9999);
+// printf("{% c}", 0);
+// printf("{% c}", 'a');
+// printf("{% s}", NULL);
+// printf("{% s}", "(null)");
+// printf("{% s}\n", "");
+
+
+// ft_printf("m% d", 9999);
+// ft_printf("% d", -9999);
+// ft_printf("% i", 9999);
+// ft_printf("% i", -9999);
+// ft_printf("% u", 9999);
+// ft_printf("{% c}", 0);
+// ft_printf("{% c}", 'a');
+// ft_printf("{% s}", NULL);
+// ft_printf("{% s}", "(null)");
+// ft_printf("{% s}\n", "");
+
+
+ //СДЕЛАТЬ РАЗБОРКУ С ФЛАГОМ SPACE  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   
+// printf("o{% +d}", 42);
+// printf("{%+ d}", 42);
+// printf("{%+03d}", 0);
+// printf("o{% 03d}\n", 0);
+// printf("{%0-3d}", 0);
+// printf("{%+03d}", 12);
+// printf("{%+03d}", 123456);
+// printf("{%03.2d}\n", 0);
+
+// ft_printf("m{% +d}", 42);
+// ft_printf("{%+ d}", 42);
+// ft_printf("{%+03d}", 0);
+// ft_printf("m{% 03d}\n", 0);
+// ft_printf("{%0-3d}", 0);
+// ft_printf("{%+03d}", 12);
+// ft_printf("{%+03d}", 123456);
+// ft_printf("{%03.2d}\n", 0);
+
+// printf("o{%-15Z}\n", 123);
+// ft_printf("{%-15Z}\n", 123);//Мой не выделяет ширину строки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// printf("{%10R}\n");
+// ft_printf("{%10R}\n");//Мой не выделяет ширину строки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+// ft_
+
 
 // system("leaks a.out");
     return (0);

@@ -18,8 +18,10 @@ int	ft_char(void *c, t_buff *p, t_flags *flag)
 
 	if (flag->width != 0)
 		flag->width--;
-	if (flag->minus == 0)
+	if (flag->minus == 0 && flag->zero == 0)
 		space(p, flag->width);
+	if (flag->minus == 0 && flag->zero == 1)
+		fzero(p, flag->width);
 	c2 = (unsigned char)c;
 	p->buff[p->i++] = c2;
 	if (flag->minus == 1)

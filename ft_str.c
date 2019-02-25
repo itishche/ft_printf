@@ -30,9 +30,12 @@ int ft_left_str(char *mas, t_buff *p, int size)
 	return (0);
 }
 
-int ft_right_str(char *mas, t_buff *p, int size)
+int ft_right_str(char *mas, t_buff *p, int size, t_flags *flag)
 {
-	space(p, size);
+	if (flag->zero == 1)
+		fzero(p, size);
+	else
+		space(p, size);
 	ft_write_buff(p, mas);
 	return (0);
 }
@@ -55,9 +58,9 @@ int ft_left_str_and_free(char *mas, t_buff *p, int k)
 	return (0);
 }
 
-int ft_right_str_and_free(char *mas, t_buff *p, int k)
+int ft_right_str_and_free(char *mas, t_buff *p, int k, t_flags *flag)
 {
-	ft_right_str(mas, p, k);
+	ft_right_str(mas, p, k, flag);
 	free(mas);
 	return (0);
 }
@@ -80,7 +83,7 @@ int	bla(char *s, t_buff *p, t_flags *flag)
 	if (k < 0)
 		k = 0;
 	if (flag->minus == 0)
-		return (ft_right_str_and_free(mas, p, k));
+		return (ft_right_str_and_free(mas, p, k,flag));
 	return (ft_left_str_and_free(mas, p, k));
 }
 
@@ -94,7 +97,7 @@ int bla_bla(char *s, t_buff *p, t_flags *flag)
 	if (k <= 0)
 		k = 0;
 	if (flag->minus == 0)
-		return (ft_right_str(s, p, k));
+		return (ft_right_str(s, p, k,flag));
 	if (flag->minus == 1)
 		return (ft_left_str(s, p, k));
 	return (0);
@@ -118,12 +121,15 @@ int ft_str(void *str, t_buff *p, t_flags *flag)
 	}
 	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0)
 			return (0);
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0)
+	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && flag->zero == 0)
 		return(space(p, flag->width));
-	if (flag->dot == 1 && flag->tochnost != 0)
-		bla(s, p, flag);	
-	else
-		bla_bla(s, p, flag);
+	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && flag->zero == 1)
+		return(fzero(p, flag->width));
+	// if (flag->dot == 1 && flag->tochnost != 0)
+	// 	bla(s, p, flag);	
+	// else
+	// 	bla_bla(s, p, flag);
+	(flag->dot == 1 && flag->tochnost != 0) ? bla(s, p, flag) : bla_bla(s, p, flag);
 	checkbuff(p);
 	return (0);
 }

@@ -81,7 +81,12 @@ typedef struct	s_flags
 	int			ft_ll_int(long long int c, t_buff *p, t_flags *flag);
 	int			ft_hh_int(signed char c, t_buff *p, t_flags *flag);
 	int			ft_h_int(short int c, t_buff *p, t_flags *flag);
-	int			ft_u(unsigned char c, t_buff *p, t_flags *flag);
+	int			ft_u(unsigned int c, t_buff *p, t_flags *flag);
+	int			ft_l_u(unsigned long int c, t_buff *p, t_flags *flag);
+	int			ft_ll_u(unsigned long long c, t_buff *p, t_flags *flag);
+	int			ft_h_u(unsigned short int c, t_buff *p, t_flags *flag);
+	int			ft_hh_u(unsigned char c, t_buff *p, t_flags *flag);
+
 
 	int			fzero(t_buff *p, int size);
 	char		*ft_strchr(const char *str, int symb);

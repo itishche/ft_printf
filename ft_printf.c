@@ -185,8 +185,15 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_hh_int(va_arg(ap, signed char), p , flag));
 	if (flag->u == 1 && flag->l == 0 && flag->ll == 0 &&
 		flag->h == 0 && flag->hh == 0)
-		return (ft_u(va_arg(ap, unsigned char), p , flag));
-
+		return (ft_u(va_arg(ap, unsigned int), p , flag));
+	if (flag->u == 1 && flag->l == 1)
+		return (ft_l_u(va_arg(ap, unsigned long), p , flag));
+	if (flag->u == 1 && flag->ll == 1)
+		return (ft_ll_u(va_arg(ap, unsigned long long), p , flag));
+	if (flag->u == 1 && flag->h == 1)
+		return (ft_h_u(va_arg(ap, unsigned short int), p , flag));
+	if (flag->u == 1 && flag->hh == 1)
+		return (ft_hh_u(va_arg(ap, unsigned char), p , flag));
 	if (flag->percent == 1)
 	{
 		
@@ -322,18 +329,8 @@ int		checkstr(va_list ap, char *car, t_buff *p)
 
 
 	k += checkmod(&flag, &car, ap, p);
-    
-
-    // printf("flag->minus = %d\n", flag.minus);
-    // printf("flag->plus = %d\n", flag.plus);
-    // printf("flag->hash = %d\n", flag.hash);
-    // printf("flag->zero = %d\n", flag.zero);
-    // printf("flag->width = %d\n", flag.width);
-    // printf("flag->dot = %d\n", flag.dot);
-    // printf("flag->tochnost = %d\n", flag.tochnost);
 	k += checktype(&flag, &car);
 	checkall(ap, p, &flag);
-	// printf(" k = %d\n", k);
 	return (k);
 }
 
