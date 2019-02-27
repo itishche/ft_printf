@@ -174,26 +174,26 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_char(va_arg(ap, void*), p, flag));
 	if (flag->d == 1 && flag->l == 0 && flag->ll == 0 &&
 		flag->h == 0 && flag->hh == 0)
-		return (ft_int(va_arg(ap, int), p , flag));
+		return (ft_int((int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->l == 1)
-		return (ft_l_int(va_arg(ap, long int), p , flag));
+		return (ft_l_int((long int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->ll == 1)
-		return (ft_ll_int(va_arg(ap, long long int), p , flag));
+		return (ft_ll_int((long long int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->h == 1)
-		return (ft_h_int(va_arg(ap, short int), p , flag));
+		return (ft_h_int((short int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->hh == 1)
-		return (ft_hh_int(va_arg(ap, signed char), p , flag));
+		return (ft_hh_int((signed char)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->l == 0 && flag->ll == 0 &&
 		flag->h == 0 && flag->hh == 0)
-		return (ft_u(va_arg(ap, unsigned int), p , flag));
+		return (ft_u((unsigned int)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->l == 1)
-		return (ft_l_u(va_arg(ap, unsigned long), p , flag));
+		return (ft_l_u((unsigned long)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->ll == 1)
-		return (ft_ll_u(va_arg(ap, unsigned long long), p , flag));
+		return (ft_ll_u((unsigned long long)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->h == 1)
-		return (ft_h_u(va_arg(ap, unsigned short int), p , flag));
+		return (ft_h_u((unsigned short int)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->hh == 1)
-		return (ft_hh_u(va_arg(ap, unsigned char), p , flag));
+		return (ft_hh_u((unsigned char)va_arg(ap, void*), p , flag));
 	if (flag->percent == 1)
 	{
 		

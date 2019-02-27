@@ -79,29 +79,45 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 	s = my_putnbr(c);
 	sign = ((c < 0) ? '-' : '+');
 	kdigit = ft_strlen(s);
+	if (flag->zero == 1 && flag->dot == 1)
+		flag->zero = 0;
+	if (flag->space == 1 && flag->plus == 0)
+	{
+		sign = (sign == '-') ? '-' : ' ';
+		flag->plus = 1;
+	}
 	(flag->plus == 1 || sign == '-') ? flag->width-- : 0;
 	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
+
 	if (flag->zero == 0)
 	{
-		flag->minus == 0 ? space(p, k) : 0;
+		if (flag->tochnost >= kdigit && flag->width >= flag->tochnost)
+			k = k -(flag->tochnost - kdigit);
+		if (flag->tochnost >= kdigit && flag->width < flag->tochnost)
+			k = flag->tochnost - kdigit;
+		else flag->minus == 0 ? space(p, k) : 0;
 		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
 			p->buff[p->i++] = sign;
+		if (flag->tochnost >= kdigit)
+			fzero(p, flag->tochnost - kdigit);
 	}
 	else
 	{
-
 		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
 			p->buff[p->i++] = sign;
-		// if (flag->tochnost >= kdigit && flag->space == 1)
-		// {
-		// 	space(p, k - (flag->tochnost - kdigit));
-		// 	fzero(p, flag->tochnost - kdigit);
-		// }
-		// else 
+		if (flag->tochnost >= kdigit)
+		{
+			space(p, k - (flag->tochnost - kdigit));
+			fzero(p, flag->tochnost - kdigit);
+		}
+		else 
+		{	
 			if (flag->minus == 0)
-			fzero(p, k);
+				fzero(p, k);
+		}
 	}
-	ft_write_buff_and_free(p, s);
+	if (!(flag->dot == 1 && flag->tochnost == 0) || flag->width != 0)
+		ft_write_buff_and_free(p, s);
 	flag->minus == 1 ? space(p, k) : 0;
 	return (0);
 }
