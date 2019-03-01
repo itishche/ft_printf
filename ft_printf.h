@@ -60,6 +60,7 @@ typedef struct	s_flags
 	int			hh;
 	int			h;
 	int			L;
+	int			U;
 	int			d;//десятичное знаковое число
 	// int		i;//десятичное знаковое число
 	int			o;//восьмеричное беззнаковое число
@@ -89,8 +90,11 @@ typedef struct	s_flags
 	int			ft_ll_u(unsigned long long c, t_buff *p, t_flags *flag);
 	int			ft_h_u(unsigned short int c, t_buff *p, t_flags *flag);
 	int			ft_hh_u(unsigned char c, t_buff *p, t_flags *flag);
+	int			ft_zd_int(size_t c, t_buff *p , t_flags *flag);
+	int			ft_x(int c, t_buff *p, t_flags *flag);
 
-	char		*ft_itoa_base(int value, int base);
+	int			ft_o(int c, t_buff *p, t_flags *flag);
+	char		*ft_itoa_base(uintmax_t value, int base, t_flags *flag);
 	int			fzero(t_buff *p, int size);
 	char		*ft_strchr(const char *str, int symb);
 	void		ft_bzero(void *str, size_t n);

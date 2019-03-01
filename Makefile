@@ -17,7 +17,10 @@ SRC		=	./ft_printf.c \
 			./ft_str.c \
 			./minilib.c \
 			./ft_int.c \
-			./ft_u.c
+			./ft_u.c \
+			./ft_o.c \
+			./ft_itoa_base.c \
+			./ft_x.c
 
 
 OBJ 	= ./ft_printf.o \
@@ -26,7 +29,10 @@ OBJ 	= ./ft_printf.o \
 			./ft_str.o \
 			./minilib.o \
 			./ft_int.o \
-			./ft_u.o
+			./ft_u.o \
+			./ft_o.o \
+			./ft_itoa_base.o \
+			./ft_x.o
 
 all: $(NAME)
 

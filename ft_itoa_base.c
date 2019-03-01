@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -11,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-=======
->>>>>>> 22d3d0fd5297b7dceb3885a21f03832f31a6aecb
 #include "ft_printf.h"
 
 static int		ft_recursive_power(int nb, int power)
@@ -31,31 +28,29 @@ static int		ft_recursive_power(int nb, int power)
 	}
 }
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(uintmax_t value, int base, t_flags *flag)
 {
 	int		sign;
 	char	*str;
+	int		i;
 
 	sign = 0;
-	if (value < 0)
-	{
+	i = 0;
+	if (flag->hash == 1 && flag->o == 1)
 		sign = 1;
-		value *= -1;
-	}
 	while (ft_recursive_power(base, i) - 1 < value)
 		i++;
-	str = (char*)malloc(sizeof(char) * i);
+	str = (char*)malloc(sizeof(char) * (i + sign));
 	str[i + sign] = '\0';
 	while (i-- > 0)
 	{
-		str[i + sign] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
+		str[i + sign] = (value % base) + (value % base > 9 ? 'a' - 10 : '0');
 		value = value / base;
 	}
-	if (sign)
-		str[0] = '-';
+	if (sign != 0)
+	{
+		str[0] = '0';
+		str[1] = (sign == 2) ? 'x' : str[1];
+	}
 	return (str);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 22d3d0fd5297b7dceb3885a21f03832f31a6aecb

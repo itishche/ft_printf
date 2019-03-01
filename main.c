@@ -470,53 +470,139 @@ int		main(void)
 // printf("{% s}", "(null)");ft_printf("{% s}", "(null)");//Работает
 
 
-// printf("{% s}\n", "");ft_printf("{% s}\n", "");
+// printf("{% s}\n", "");ft_printf("{% s}\n", "");//Работает
 
-//СДЕЛАТЬ РАЗБОРКУ С ФЛАГОМ SPACE  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-// printf("% u\n", 9999);ft_printf("% u\n", 9999);
 
-// printf("o%.4u\n", 42);ft_printf("m%.4u\n", 42);
-// printf("o%.4u\n", 424242);ft_printf("m%.4u\n", 424242);
+
+// ft_printf("m%jd\n", -9223372036854775808);
+// printf("o%jd\n", -9223372036854775808);
+
+
+// ft_printf("%jd\n", 9223372036854775807);
+// ft_printf("%lld", 9223372036854775807);
+
+
+/*
+*
+*       test_u
+*
+*/
+// printf("% u\n", 9999);ft_printf("% u\n", 9999);//Работает//Работает
+// printf("\n");
+// printf("o%.4u\n", 42);ft_printf("m%.4u\n", 42);//Работает
+// printf("\n");
+
+// printf("o%.4u\n", 424242);ft_printf("m%.4u\n", 424242);//Работает
+// printf("\n");
 // printf("o%15.4u\n", 42);ft_printf("m%15.4u\n", 42);
-// printf("o%15.4u\n", 424242);ft_printf("m%15.4u\n", 424242);
-// printf("o%8.4u\n", 424242424);ft_printf("m%8.4u\n", 424242424);
-// printf("o%4.15u\n", 42);ft_printf("m%4.15u\n", 42);
-// printf("o%4.15u\n", 424242);ft_printf("m%4.15u\n", 424242);
-// printf("o%4.8u\n", 424242424);ft_printf("m%4.8u\n", 424242424);
-// printf("o%.u, %.0u\n", 0, 0);ft_printf("m%.u, %.0u\n", 0, 0);
+// printf("\n");
 
- 
-  printf("%s\n", "1)");
-  printf("o%+010d\n", 42);
-  ft_printf("m%+010d\n\n", 42);
-
-  printf("%s\n", "12)");
-  printf("o%+010.d\n", 42);
-  ft_printf("m%+010.d\n\n", 42);
-  
-   printf("%s\n", "13");
-  printf("o%+10.d\n", 42);
-  ft_printf("m%+10.d\n\n", 42);
-
-  // printf("%s\n", "13)");
-  // printf("%+010.0d\n", 42);
-  // ft_printf("%+010.0d\n\n", 42);
-  
-
-  // printf("%s\n", "14)");
-  // printf("%+010.2d\n", 42);
-  // ft_printf("%+010.2d\n\n", 42);
+// printf("o%15.4u\n", 424242);ft_printf("m%15.4u\n", 424242);//Работает
+// printf("\n");
+// printf("o%8.4u\n", 424242424);ft_printf("m%8.4u\n", 424242424);//Работает
+// printf("\n");
+// printf("o%4.15u\n", 42);ft_printf("m%4.15u\n", 42);//Работает
+// printf("\n");
+// printf("o%4.15u\n", 424242);ft_printf("m%4.15u\n", 424242);//Работает
+// printf("\n");
+// printf("o%4.8u\n", 424242424);ft_printf("m%4.8u\n", 424242424);//Работает
+// printf("\n");
+// printf("o%.u, %.0u\n", 0, 0);ft_printf("m%.u, %.0u\n", 0, 0);//Работает
 
 
+
+// ft_printf("m%+u\n", 4294967295);
+// printf("o%+u\n", 4294967295);
+
+
+//#################### Когда используется вместе с o, x или X, вставляет перед числом 0, 0x или 0X
+// Когда используется со спецификаторами a, A, e, E, f, F, g или G, вставляет десятичную точку, даже если после неё нет десятичных знаков.
+
+
+// ft_printf("1mo{%o}\n", 40);printf("1oo{%o}\n", 40);
+// ft_printf("2m5o{%5o}\n", 41);printf("2o5o{%5o}\n", 41);
+// ft_printf("3m{%05o}\n", 42);printf("3o{%05o}\n", 42);
+// ft_printf("4m{%-5o}\n", 2500);printf("4o{%-5o}\n", 2500);
+// ft_printf("5m{%#6o}\n", 2500);printf("5o{%#6o}\n", 2500);
+// ft_printf("6m{%-#6o}\n", 2500); printf("6o{%-#6o}\n", 2500);
+// ft_printf("7m{%-05o}\n", 2500);printf("7o{%-05o}\n", 2500);
+// ft_printf("8m -5.10o {%-5.10o}\n", 2500); printf("8o -5.10o {%-5.10o}\n", 2500);
+// ft_printf("9m -10.5o{%-10.5o}\n", 2500); printf("9o -10.5o{%-10.5o}\n", 2500);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// printf("1o{%o}\n", 0);
+//   ft_printf("1m{%o}\n\n", 0);
+
+//   printf("2o{%#o}\n", 0);
+//   ft_printf("2m{%#o}\n\n", 0);
+
+//   printf("3o  #10.o {%#10.o}\n", 0);
+//   ft_printf("3m  #10.o {%#10.o}\n\n", 0);
+
+// printf("3&o -#10.o{%-#10.o}\n", 0);
+//   ft_printf("3&m -#10.o{%-#10.o}\n\n", 0);
+
+// printf("3_1o #10.2o{%#10.2o}\n", 0);
+//   ft_printf("3_1m #10.2o{%#10.2o}\n\n", 0);
+
+//   printf("4o #10o {%#10o}\n", 0);
+//   ft_printf("4m #10o {%#10o}\n\n", 0);
+
+//   printf("5o #-10o {%#-10o}\n", 0);
+//   ft_printf("5m #-10o {%#-10o}\n\n", 0);
+
+//   printf("o @moulitest: .o .0o{ %.o %.0o}\n", 0, 0);
+//   ft_printf("m @moulitest: .o .0o{ %.o %.0o}\n\n", 0, 0);
+
+
+// // ft_printf("10m -10.5o {%-10.5o}\n", 2500); printf("10o -10.5o {%-10.5o}\n", 2500);
+// ft_printf("11m @moulitest:  5.o 5.0o{ %5.o %5.0o}\n", 0, 0);printf("11o @moulitest:  5.o 5.0o{ %5.o %5.0o}\n", 0, 0);
+// ft_printf("12m @moulitest: #.o #.0o{ %#.o %#.0o}\n", 0, 0); printf("12o @moulitest: #.o #.0o{ %#.o %#.0o}\n", 0, 0); 
+// // FAIL ft_printf("%-10.5o", 2500);                   -> "04704     "
+
+// //   94. FAIL ft_printf("@moulitest: %5.o %5.0o", 0, 0);    -> "@moulitest:            "
+// //   95. FAIL ft_printf("@moulitest: %#.o %#.0o", 0, 0);    -> "@moulitest: 0 0"
+
+// ft_printf("m @moulitest: {%.10o}\n", 42);//           -> "@moulitest: 0000000052"
+// printf("o @moulitest: {%.10o}\n", 42);
+
+
+// int i= 0;
+// int j = 0;
+//   printf("4)\n");
+//   i = printf("orig:\"%10d\"\n", 0);//Работает
+//   j = ft_printf("mine:\"%10d\"\n", 0);
+//   printf("orig:%i\nmine:%i\n\n", i , j);
+
+//   printf("5)\n");
+//   i = printf("orig:\"%10.d\"\n", 0);//Работает
+//   j = ft_printf("mine:\"%10.d\"\n", 0);
+//   printf("orig:%i\nmine:%i\n\n", i , j);
+
+//   printf("6)\n");
+//   i = printf("orig:\"%-10.d\"\n", 0);//Работает
+//   j = ft_printf("mine:\"%-10.d\"\n", 0);
+//   printf("orig:%i\nmine:%i\n\n", i , j);
 // 
-//
-// 
-// 
-// 
-// 
-// 
-// 
+// ft_printf("m%03.2d\n", -1);//Работает
+// printf("o%03.2d\n", -1);
+
+// printf("\n");
+// ft_printf("m@moulitest: %.d %.0d\n", 42, 43);//Работает
+// printf("o@moulitest: %.d %.0d\n", 42, 43);
+
 //СДЕЛАТЬ РАЗБОРКУ С ФЛАГОМ SPACE  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   
 // printf("o{%-15Z}\n", 123); ft_printf("{%-15Z}\n", 123);//Мой не выделяет ширину строки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // printf("{%10R}\n");  ft_printf("{%10R}\n");//Мой не выделяет ширину строки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -525,6 +611,195 @@ int		main(void)
 // ft_
 // ft_
 // ft_
+
+    printf("************************* X_TESTS: *****************************\n");
+  printf("%s\n", "1)");
+  printf("o%x\n", 42);
+  ft_printf("m%x\n\n", 42);
+  printf("%s\n", "2)");
+  printf("%x\n", -42);
+  ft_printf("%x\n\n", -42);
+  printf("%s\n", "3)");
+  printf("%#x\n", 42);
+  ft_printf("%#x\n\n", 42);
+  printf("%s\n", "4)");
+  printf("%10x\n", 42);
+  ft_printf("%10x\n\n", 42);
+  printf("%s\n", "5)");
+  printf("%10.x\n", 42);
+  ft_printf("%10.x\n\n", 42);
+  printf("%s\n", "6)");
+  printf("%10.0x\n", 42);
+  ft_printf("%10.0x\n\n", 42);
+  printf("%s\n", "7)");
+  printf("%10.2x\n", 42);
+  ft_printf("%10.2x\n\n", 42);
+  printf("%s\n", "8)");
+  printf("%10.4x\n", 42);
+  ft_printf("%10.4x\n\n", 42);
+  printf("%s\n", "9)");
+  printf("%10.11x\n", 42);
+  ft_printf("%10.11x\n\n", 42);
+  printf("%s\n", "10)");
+  printf("%#0x\n", 42);
+  ft_printf("%#0x\n\n", 42);
+  printf("%s\n", "11)");
+  printf("%#010x\n", 42);
+  ft_printf("%#010x\n\n", 42);
+  printf("%s\n", "12)");
+  printf("%#010.x\n", 42);
+  ft_printf("%#010.x\n", 42);
+  printf("%s\n", "13)");
+  printf("%#010.0x\n", 42);
+  ft_printf("%#010.0x\n\n", 42);
+  printf("%s\n", "14)");
+  printf("%#010.2x\n", 42);
+  ft_printf("%#010.2x\n\n", 42);
+  printf("%s\n", "15)");
+  printf("%#010.4x\n", 42);
+  ft_printf("%#010.4x\n\n", 42);
+  printf("%s\n", "16)");
+  printf("%#010.11x\n", 42);
+  ft_printf("%#010.11x\n\n", 42);
+  printf("%s\n", "17)");
+  printf("%#10x\n", 42);
+  ft_printf("%#10x\n\n", 42);
+  printf("%s\n", "18)");
+  printf("%#10.x\n", 42);
+  ft_printf("%#10.x\n\n", 42);
+  printf("%s\n", "19)");
+  printf("%#10.0x\n", 42);
+  ft_printf("%#10.0x\n\n", 42);
+  printf("%s\n", "20)");
+  printf("%#10.2x\n", 42);
+  ft_printf("%#10.2x\n\n", 42);
+  printf("%s\n", "21)");
+  printf("%#10.4x\n", 42);
+  ft_printf("%#10.4x\n\n", 42);
+  printf("%s\n", "22)");
+  printf("%#10.11x\n", 42);
+  ft_printf("%#10.11x\n\n", 42);
+  printf("%s\n", "23)");
+  printf("%#x\n", 42);
+  ft_printf("%#x\n\n", 42);
+  printf("%s\n", "24)");
+  printf("%10x\n", 42);
+  ft_printf("%10x\n\n", 42);
+  printf("%s\n", "25)");
+  printf("%10.x\n", 42);
+  ft_printf("%10.x\n\n", 42);
+  printf("%s\n", "26)");
+  printf("%10.0x\n", 42);
+  ft_printf("%10.0x\n\n", 42);
+  printf("%s\n", "27)");
+  printf("%10.2x\n", 42);
+  ft_printf("%10.2x\n\n", 42);
+  printf("%s\n", "28)");
+  printf("%10.4x\n", 42);
+  ft_printf("%10.4x\n\n", 42);
+  printf("%s\n", "29)");
+  printf("%10.11x\n", 42);
+  ft_printf("%10.11x\n\n", 42);
+  printf("%s\n", "30)");
+  printf("%#0x\n", 42);
+  ft_printf("%#0x\n\n", 42);
+  printf("%s\n", "31)");
+  printf("%#010x\n", 42);
+  ft_printf("%#010x\n\n", 42);
+  printf("%s\n", "32)");
+  printf("%#010.x\n", 42);
+  ft_printf("%#010.x\n\n", 42);
+  printf("%s\n", "33)");
+  printf("%#010.0x\n", 42);
+  ft_printf("%#010.0x\n\n", 42);
+  printf("%s\n", "34)");
+  printf("%#010.2x\n", 42);
+  ft_printf("%#010.2x\n\n", 42);
+  printf("%s\n", "35)");
+  printf("%#010.4x\n", 42);
+  ft_printf("%#010.4x\n\n", 42);
+  printf("%s\n", "36)");
+  printf("%#010.11x\n", 42);
+  ft_printf("%#010.11x\n\n", 42);
+  printf("%s\n", "37)");
+  printf("%#10x\n", 42);
+  ft_printf("%#10x\n\n", 42);
+  printf("%s\n", "38)");
+  printf("%#10.x\n", 42);
+  ft_printf("%#10.x\n\n", 42);
+  printf("%s\n", "39)");
+  printf("%#10.0x\n", 42);
+  ft_printf("%#10.0x\n\n", 42);
+  printf("%s\n", "40)");
+  printf("%#10.2x\n", 42);
+  ft_printf("%#10.2x\n\n", 42);
+  printf("%s\n", "41)");
+  printf("%#10.4x\n", 42);
+  ft_printf("%#10.4x\n\n", 42);
+  printf("%s\n", "42)");
+  printf("%#10.11x\n", 42);
+  ft_printf("%#10.11x\n\n", 42);
+  printf("%s\n", "43)");
+  printf("%-#x\n", 42);
+  ft_printf("%-#x\n\n", 42);
+  printf("%s\n", "44)");
+  printf("%-10x\n", 42);
+  ft_printf("%-10x\n\n", 42);
+  printf("%s\n", "45)");
+  printf("%-10.x\n", 42);
+  ft_printf("%-10.x\n\n", 42);
+  printf("%s\n", "46)");
+  printf("%-10.0x\n", 42);
+  ft_printf("%-10.0x\n\n", 42);
+  printf("%s\n", "47)");
+  printf("%-10.2x\n", 42);
+  ft_printf("%-10.2x\n\n", 42);
+  printf("%s\n", "48)");
+  printf("%-10.4x\n", 42);
+  ft_printf("%-10.4x\n\n", 42);
+  printf("%s\n", "49)");
+  printf("%-10.11x\n", 42);
+  ft_printf("%-10.11x\n\n", 42);
+  printf("%s\n", "50)");
+  printf("%-#0x\n", 42);
+  ft_printf("%-#0x\n\n", 42);
+  printf("%s\n", "51)");
+  printf("%-#010x\n", 42);
+  ft_printf("%-#010x\n\n", 42);
+  printf("%s\n", "52)");
+  printf("%-#010.x\n", 42);
+  ft_printf("%-#010.x\n\n", 42);
+  printf("%s\n", "53)");
+  printf("%-#010.0x\n", 42);
+  ft_printf("%-#010.0x\n\n", 42);
+  printf("%s\n", "54)");
+  printf("%-#010.2x\n", 42);
+  ft_printf("%-#010.2x\n\n", 42);
+  printf("%s\n", "55)");
+  printf("%-#010.4x\n", 42);
+  ft_printf("%-#010.4x\n\n", 42);
+  printf("%s\n", "56)");
+  printf("%-#010.11x\n", 42);
+  ft_printf("%-#010.11x\n\n", 42);
+  printf("%s\n", "57)");
+  printf("%-#10x\n", 42);
+  ft_printf("%-#10x\n\n", 42);
+  printf("%s\n", "58)");
+  printf("%-#10.x\n", 42);
+  ft_printf("%-#10.x\n\n", 42);
+  printf("%s\n", "59)");
+  printf("%-#10.0x\n", 42);
+  ft_printf("%-#10.0x\n\n", 42);
+  printf("%s\n", "60)");
+  printf("%-#10.2x\n", 42);
+  ft_printf("%-#10.2x\n\n", 42);
+  printf("%s\n", "61)");
+  printf("%-#10.4x\n", 42);
+  ft_printf("%-#10.4x\n\n", 42);
+  printf("%s\n", "62)");
+  printf("%-#10.11x\n", 42);
+  ft_printf("%-#10.11x\n\n", 42);
+  printf("**************** END OF X TESTS *******************\n\n\n");
 
 
 // system("leaks a.out");

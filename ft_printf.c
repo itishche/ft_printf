@@ -36,7 +36,8 @@ int		checkflag(char **car, t_flags *flag)
 	i = 0;
 	if ((s = ft_strchr("#0-+ ", **car)) == NULL)
 		return (i);
-	while (**car < 49 && **car >=32 )
+	while (**car < 49 && **car >= 32 && 
+		(**car == ' ' ||  **car == '#' ||  **car == '-' ||  **car == '+' || **car == '0'))
 	{
 		if (**car == '#')
 		{
@@ -139,24 +140,36 @@ int		checktype(t_flags *flag, char **car)
 		(*car)++;
 		i++;
 	}
- //    else if (**car == 'i')
- //    {
-	// 	flag->i = 1;
-	// 	(*car)++;
-	// 	i++;
-	// }
-    //else if (*car == 'o')
-    //	flag->o = 1;
+	else if (**car == 'o')
+	{
+		flag->o = 1;
+		(*car)++;
+		i++;
+	}
 	else if (**car == 'u')
 	{
 		flag->u = 1;
 		(*car)++;
 		i++;
 	}
-    //    else if (*car == 'x')
-    //        flag->x = 1;
-    //    else if (*car == 'X')
-    //        flag->X = 1;
+	else if (**car == 'U')
+	{
+		flag->U = 1;
+		(*car)++;
+		i++;
+	}
+	else if (**car == 'X')
+	{
+		flag->X = 1;
+		(*car)++;
+		i++;
+	}
+	else if (**car == 'x')
+	{
+		flag->x = 1;
+		(*car)++;
+		i++;
+	}
     //    else if (*car == 'f')
     //        flag->f = 1;
     //    else if (*car == 'F')
@@ -173,27 +186,36 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 	if (flag->c == 1)
 		return (ft_char(va_arg(ap, void*), p, flag));
 	if (flag->d == 1 && flag->l == 0 && flag->ll == 0 &&
-		flag->h == 0 && flag->hh == 0)
+		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
 		return (ft_int((int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->l == 1)
 		return (ft_l_int((long int)va_arg(ap, void*), p , flag));
-	if (flag->d == 1 && flag->ll == 1)
+	if (flag->d == 1 && (flag->j == 1 || flag->ll == 1))
 		return (ft_ll_int((long long int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->h == 1)
 		return (ft_h_int((short int)va_arg(ap, void*), p , flag));
 	if (flag->d == 1 && flag->hh == 1)
 		return (ft_hh_int((signed char)va_arg(ap, void*), p , flag));
+	if (flag->d == 1 && flag->z == 1)
+		return (ft_zd_int((size_t)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->l == 0 && flag->ll == 0 &&
-		flag->h == 0 && flag->hh == 0)
+		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
 		return (ft_u((unsigned int)va_arg(ap, void*), p , flag));
-	if (flag->u == 1 && flag->l == 1)
+	if ((flag->u == 1 && flag->l == 1) || flag->U == 1)
 		return (ft_l_u((unsigned long)va_arg(ap, void*), p , flag));
-	if (flag->u == 1 && flag->ll == 1)
+	if (flag->u == 1 && (flag->ll == 1 || flag->j == 1))
 		return (ft_ll_u((unsigned long long)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->h == 1)
 		return (ft_h_u((unsigned short int)va_arg(ap, void*), p , flag));
 	if (flag->u == 1 && flag->hh == 1)
 		return (ft_hh_u((unsigned char)va_arg(ap, void*), p , flag));
+	if (flag->o == 1)
+		return (ft_o((int)va_arg(ap, void*), p , flag));
+	if (flag->x == 1 || flag->X == 1)
+		return (ft_x((int)va_arg(ap, void*), p , flag));
+
+
+
 	if (flag->percent == 1)
 	{
 		
@@ -269,6 +291,16 @@ int		checkmod(t_flags *flag, char **car, va_list ap, t_buff *p)
 	if ((s = ft_strchr("hljzL", **car)) != NULL)
 	{
 		i = 1;
+		if (**car == 'j')
+		{
+	 		(*car)++;
+			flag->j = 1;
+		}
+		if (**car == 'z')
+		{
+	 		(*car)++;
+			flag->z = 1;
+		}
 		if (**car == 'L')
 		{
 	 		(*car)++;
@@ -324,10 +356,7 @@ int		checkstr(va_list ap, char *car, t_buff *p)
 	ft_bzero(&flag, sizeof(flag));
 	k += checkflag(&car, &flag);
 	k += checkwidth(&flag, &car, ap);
-
 	k += checktochnost(&car, &flag, ap);
-
-
 	k += checkmod(&flag, &car, ap, p);
 	k += checktype(&flag, &car);
 	checkall(ap, p, &flag);

@@ -95,7 +95,8 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 			k = k -(flag->tochnost - kdigit);
 		if (flag->tochnost >= kdigit && flag->width < flag->tochnost)
 			k = flag->tochnost - kdigit;
-		else flag->minus == 0 ? space(p, k) : 0;
+		else 
+			flag->minus == 0 ? space(p, k) : 0;
 		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
 			p->buff[p->i++] = sign;
 		if (flag->tochnost >= kdigit)
@@ -116,12 +117,23 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 				fzero(p, k);
 		}
 	}
-	if (!(flag->dot == 1 && flag->tochnost == 0) || flag->width != 0)
-		ft_write_buff_and_free(p, s);
+	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0 && s[0] == '0')
+		s[0] = '\0';
+	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && s[0] == '0')
+		s[0] = 32;
+	ft_write_buff_and_free(p, s);
 	flag->minus == 1 ? space(p, k) : 0;
 	return (0);
 }
 
+int		ft_zd_int(size_t c, t_buff *p , t_flags *flag)
+{
+	long long int z;
+
+	z = (long long int)c;
+	check_int(p, flag, z);
+	return (0);
+}
 int		ft_hh_int(signed char c, t_buff *p, t_flags *flag)
 {
 	long long int z;
