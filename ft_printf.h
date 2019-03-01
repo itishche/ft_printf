@@ -52,6 +52,9 @@ typedef struct	s_flags
 /*
 СПЕЦИФИКАТОРЫ ТИПА
 */
+	int			j;
+	int			z;
+
 	int			l;
 	int			ll;
 	int			hh;
@@ -87,7 +90,7 @@ typedef struct	s_flags
 	int			ft_h_u(unsigned short int c, t_buff *p, t_flags *flag);
 	int			ft_hh_u(unsigned char c, t_buff *p, t_flags *flag);
 
-
+	char		*ft_itoa_base(int value, int base);
 	int			fzero(t_buff *p, int size);
 	char		*ft_strchr(const char *str, int symb);
 	void		ft_bzero(void *str, size_t n);
