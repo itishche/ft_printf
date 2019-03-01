@@ -32,6 +32,7 @@ int		ft_x(int c, t_buff *p, t_flags *flag)
 	int 	k;
 	char	*sign;
 
+	sign = NULL;
 	if (c == 0)
 	{
 		s = ft_strnew(1);
@@ -95,5 +96,7 @@ int		ft_x(int c, t_buff *p, t_flags *flag)
 		s[0] = 32;
 	ft_write_buff_and_free(p, s);
 	flag->minus == 1 ? space(p, k) : 0;
+	// if (sign != NULL)
+	// 	free(sign);
 	return (0);
 }
