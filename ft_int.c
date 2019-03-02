@@ -126,6 +126,25 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 	return (0);
 }
 
+int 	ft_float(double c, t_buff *p, t_flags *flag)
+{
+	t_float	f;
+	int		sign;
+	int		k;
+
+
+	sign = ((int)c < 0) ? '-' : '+';
+	f.before = my_putnbr((int)c);
+	k = flag->tochnost;
+	if (flag->dot == 1)
+		while (k-- > 1)
+		{
+			printf("123456789\n");
+		}
+	return (0);
+}
+
+
 int		ft_zd_int(size_t c, t_buff *p , t_flags *flag)
 {
 	long long int z;

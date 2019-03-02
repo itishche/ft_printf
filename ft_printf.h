@@ -29,6 +29,15 @@ typedef struct s_buff
 	int	count;
 }		t_buff;
 
+typedef struct s_float
+{
+	char	*before;
+	char	after[10];
+	// int	i;
+	// int	count;
+}		t_float;
+
+
 typedef struct	s_flags
 {
     /*
@@ -100,7 +109,7 @@ typedef struct	s_flags
 	int			ft_h_x(unsigned short int c, t_buff *p, t_flags *flag);
 	int			ft_ll_x(unsigned long long c, t_buff *p, t_flags *flag);
 	int			ft_l_x(unsigned long int c, t_buff *p, t_flags *flag);
-	int		ft_j_x(intmax_t c, t_buff *p, t_flags *flag);
+	int			ft_j_x(intmax_t c, t_buff *p, t_flags *flag);
 
 
 	int			ft_o(int c, t_buff *p, t_flags *flag);
