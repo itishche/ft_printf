@@ -211,10 +211,19 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_hh_u((unsigned char)va_arg(ap, void*), p , flag));
 	if (flag->o == 1)
 		return (ft_o((int)va_arg(ap, void*), p , flag));
-	if (flag->x == 1 || flag->X == 1)
+	if ((flag->x == 1 || flag->X == 1) && flag->l == 0 && flag->ll == 0 &&
+		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
 		return (ft_x((int)va_arg(ap, void*), p , flag));
-
-
+	if ((flag->x == 1 || flag->X == 1) && flag->l == 1)
+		return (ft_l_x((long int)va_arg(ap, void*), p , flag));
+	if ((flag->x == 1 || flag->X == 1) && (flag->ll == 1))
+		return (ft_ll_x((long long int)va_arg(ap, void*), p , flag));
+	if ((flag->x == 1 || flag->X == 1) && flag->h == 1)
+		return (ft_h_x((short int)va_arg(ap, void*), p , flag));
+	if ((flag->x == 1 || flag->X == 1) && flag->hh == 1)
+		return (ft_hh_x((signed char)va_arg(ap, void*), p , flag));
+	if ((flag->x == 1 || flag->X == 1) && (flag->j == 1))
+		return (ft_j_x((intmax_t)va_arg(ap, void*), p , flag));
 
 	if (flag->percent == 1)
 	{

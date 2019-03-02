@@ -800,8 +800,70 @@ int		main(void)
   printf("%-#10.11x\n", 42);
   ft_printf("%-#10.11x\n\n", 42);
   printf("**************** END OF X TESTS *******************\n\n\n");
+  printf("**************42 x&X test**************\n");
+  printf("%s\n", "20.");
+  printf("%x\n", 123);
+  ft_printf("%x\n\n", 123);
+  printf("%s\n", "21.");
+  printf("%10X\n", 123);
+  ft_printf("%10X\n\n", 123);
+  
+  printf("%s\n", "23. FAIL");
+  printf("%lx\n", 4294967296);
+  ft_printf("%lx\n\n", 4294967296);
+
+  printf("%s\n", "24. FAIL");
+  printf("%llx\n", 4294967296);
+  ft_printf("%llx\n\n", 4294967296);
+
+  printf("o%jx\n", 4294967295);
+  ft_printf("m%jx\n\n", 4294967295);
+
+  printf("%s\n", "25");
+  printf("o%hx\n", 4294967296);
+  ft_printf("m%hx\n\n", 4294967296);
+  
+  printf("21o{%jx}\n", 4294967296);
+  ft_printf("21m{%jx}\n\n", 4294967296);
 
 
+  printf("22o{%jx}\n", -4294967296);
+  ft_printf("22m{%jx}\n\n", -4294967296);
+
+    printf("23o{%jx}\n", -4294967297);  
+  ft_printf("23m{%jx}\n\n", -4294967297);
+
+  // ft_printf("{%llx}\n", 9223372036854775807);
+  // ft_printf("{%#llx}\n", 9223372036854775807);
+  // ft_printf("{%llx}\n", 9223372036854775808);
+  // ft_printf("{%#x}\n", 0);
+  // ft_printf("{%#x}\n", 42); 
+  // ft_printf("{%#-08x}\n", 42);
+  // ft_printf("{%#08x}\n", 42);
+  // ft_printf("{%#8x}\n", 42);
+
+  // 25.      ft_printf("%hx", 4294967296);                 -> "0"
+  // 26.      ft_printf("%hhX", 4294967296);                -> "0"
+  // 27.      ft_printf("%jx", 4294967295);                 -> "ffffffff"
+  // 28. FAIL ft_printf("%jx", 4294967296);                 -> "100000000"
+  // 29. FAIL ft_printf("%jx", -4294967296);                -> "ffffffff00000000"
+  // 30. FAIL ft_printf("%jx", -4294967297);                -> "fffffffeffffffff"
+  // 31. FAIL ft_printf("%llx", 9223372036854775807);       -> "7fffffffffffffff"
+  // 32. FAIL ft_printf("%llx", 9223372036854775808);       -> "7fffffffffffffff"
+  // 33.      ft_printf("%010x", 542);                      -> "000000021e"
+  // 34.      ft_printf("%-15x", 542);                      -> "21e            "
+  // 35.      ft_printf("%2x", 542);                        -> "21e"
+  // 36.      ft_printf("%.2x", 5427);                      -> "1533"
+  // 37.      ft_printf("%5.2x", 5427);                     -> " 1533"
+  // 38. FAIL ft_printf("%#x", 42);                         -> "0x2a"
+  // 39. FAIL ft_printf("%#llx", 9223372036854775807);      -> "0x7fffffffffffffff"
+  // 40. FAIL ft_printf("%#x", 0);                          -> "0"
+  // 41. FAIL ft_printf("%#x", 42);                         -> "0x2a"
+  // 42. FAIL ft_printf("%#X", 42);                         -> "0X2A"
+  // 43. FAIL ft_printf("%#8x", 42);                        -> "    0x2a"
+  // 44. FAIL ft_printf("%#08x", 42);                       -> "0x00002a"
+  // 45. FAIL ft_printf("%#-08x", 42);                      -> "0x2a    "
+  // 46. FAIL ft_printf("@moulitest: %#.x %#.0x", 0, 0);    -> "@moulitest:  "
 // system("leaks a.out");
     return (0);
 }
