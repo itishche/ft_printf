@@ -25,7 +25,6 @@ int		ft_o(int c, t_buff *p, t_flags *flag)
 	}
 	else
 		s = ft_itoa_base((uintmax_t)c, 8, flag);
-	// printf("s = %s\n", s);
 	kdigit = ft_strlen(s);	
 	if (flag->zero == 1 && flag->dot == 1)
 		flag->zero = 0;

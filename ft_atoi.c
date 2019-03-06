@@ -48,3 +48,40 @@ int			ft_atoi(const char *str)
     else
         return (number * sign);
 }
+
+char    *ft_strcpy(char *dst, char *src)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (src[j] != '\0')
+        j++;
+    while (i < j)
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    dst[i] = '\0';
+    return (dst);
+}
+
+char    *ft_strcat(char *s1, char *s2)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (s1[i] != '\0')
+        i++;
+    while (s2[j] != '\0')
+    {
+        s1[i] = s2[j];
+        i++;
+        j++;
+    }
+    s1[i] = '\0';
+    return (s1);
+}

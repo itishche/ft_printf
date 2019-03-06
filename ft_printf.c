@@ -170,6 +170,12 @@ int		checktype(t_flags *flag, char **car)
 		(*car)++;
 		i++;
 	}
+	else if (**car == 'f')
+	{
+		flag->f = 1;
+		(*car)++;
+		i++;
+	}
     //    else if (*car == 'f')
     //        flag->f = 1;
     //    else if (*car == 'F')
@@ -225,10 +231,14 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 	if ((flag->x == 1 || flag->X == 1) && (flag->j == 1))
 		return (ft_j_x((intmax_t)va_arg(ap, void*), p , flag));
 
+
+	if (flag->f == 1)
+		return (ft_float(va_arg(ap, double), p , flag));
+
 	if (flag->percent == 1)
 	{
 		
-		return (ft_char("%", p, flag));
+		return (ft_str("%", p, flag));
 	}
 	return (0);
 }

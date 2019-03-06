@@ -126,21 +126,66 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 	return (0);
 }
 
-int 	ft_float(double c, t_buff *p, t_flags *flag)
+void	float_function(t_float	*f, t_flags *flag, int sign)
+{
+	int i;
+	int k;
+
+	k = ft_strlen(f->before);
+
+	i = flag->tochnost;
+	
+
+}
+
+int		ft_float(double c, t_buff *p, t_flags *flag)
 {
 	t_float	f;
 	int		sign;
 	int		k;
-
-
+	double	n;
+//По умолчанию выводятся с точностью 6, если число по модулю меньше единицы, перед десятичной точкой пишется 0
+// чекнуть точность
+	//ЕСЛИ ТОЧНОСТЬ НОЛЬ, ТО СРАЗУ ОКРУГЛИТЬ ЦЕЛУЮ ЧАСТЬ НА +1
 	sign = ((int)c < 0) ? '-' : '+';
-	f.before = my_putnbr((int)c);
-	k = flag->tochnost;
-	if (flag->dot == 1)
-		while (k-- > 1)
-		{
-			printf("123456789\n");
-		}
+
+	n = c - (int)c;
+	k = 0;
+	if (flag->dot == 0)
+		flag->tochnost = 6;
+	f.after = ft_strnew(flag->tochnost);
+	while (k < flag->tochnost)
+	{
+		n = n * 10.0;
+		f.after[k++] = (int)n + 48;
+		n = n - (int)n;
+	}
+	if (flag->tochnost == 0 && f.after[0] >= '5' && ((int)c % 2 != 0 || ((int)c % 2 == 0 && (int)c >= 10)))
+	{
+		printf("123456\n");
+		f.before = my_putnbr((int)c + 1);
+		f.after[0] = '\0';
+	}
+	else if (flag->tochnost == 0 &&
+		((f.after[0] >= '5' && ((int)c % 2 == 0) && (int)c < 10) || (f.after[0] < 5)))
+	{
+		printf("000000000\n");
+		f.before = my_putnbr((int)c);
+		f.after[0] = '\0';
+	}
+	else
+	{
+		printf("ффффффффффффффф\n");
+		f.before = my_putnbr((int)c);
+		float_function(&f, flag, sign);
+	}
+	ft_write_buff_and_free(p, f.before);
+	if (flag->tochnost != 0)
+	{
+		ft_write_buff(p, ".");
+		ft_write_buff_and_free(p, f.after);
+	}
+
 	return (0);
 }
 
@@ -153,6 +198,7 @@ int		ft_zd_int(size_t c, t_buff *p , t_flags *flag)
 	check_int(p, flag, z);
 	return (0);
 }
+
 int		ft_hh_int(signed char c, t_buff *p, t_flags *flag)
 {
 	long long int z;

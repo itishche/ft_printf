@@ -25,82 +25,69 @@ void		ft_toupper(char *s)
 	}
 }
 
-int		check_x(t_buff *p, t_flags *flag, unsigned long long c)
+void		x_str(t_flags *flag, unsigned long long c,t_check_x *x)
 {
-	char	*s;
-	int		kdigit;
-	int 	k;
-	char	*sign;
-	int		l;
-
-	sign = NULL;
-	l = 0;
 	if (c == 0)
 	{
-		s = ft_strnew(1);
-		s[0] = '0';
+		x->s = ft_strnew(1);
+		x->s[0] = '0';
 	}
 	else
-		s = ft_itoa_base((intmax_t)c, 16, flag);
-	flag->X == 1 ? ft_toupper(s) : 0;
+		x->s = ft_itoa_base((intmax_t)c, 16, flag);
+	flag->X == 1 ? ft_toupper(x->s) : 0;
+	ft_bzero(x->sign, sizeof(x->sign));
 	if (flag->hash == 1)
 	{
-		sign = ft_strnew(2);
-		l = 1;
-		if (flag->X == 1)
-		{
-			sign = "0X";
-			ft_toupper(s);
-		}
-		if (flag->x == 1)
-			sign = "0x";
+		x->sign[0] = '0';
+		x->sign[1] = (flag->X == 1) ? 'X' : 'x';
 	}
-	kdigit = ft_strlen(s);	
-	if (flag->zero == 1 && flag->dot == 1)
-		flag->zero = 0;
-	flag->width -= (sign && flag->hash == 1) ? 2 : 0;
-	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
+	x->kdigit = ft_strlen(x->s);
+}
 
+static void check_x_with_flag_zero(t_flags *flag, t_buff *p, t_check_x	*x)
+{
 	if (flag->zero == 0)
 	{
-		if (flag->tochnost >= kdigit && flag->width >= flag->tochnost)
-			k = flag->width - flag->tochnost;
-		if (flag->tochnost >= kdigit && flag->width < flag->tochnost)
-			k = flag->tochnost - kdigit; 
-		
+		x->k = (flag->tochnost >= x->kdigit && flag->width >= flag->tochnost) ? flag->width - flag->tochnost : x->k;
+		if (flag->tochnost >= x->kdigit && flag->width < flag->tochnost)
+			x->k = flag->tochnost - x->kdigit; 
 		else
-			flag->minus == 0 ? space(p, k) : 0;
-		if (sign && flag->hash == 1)
-			ft_write_buff(p, sign);
-		if (flag->tochnost >= kdigit)
+			flag->minus == 0 ? space(p, x->k) : 0;
+		(x->sign[1] && flag->hash == 1) ? ft_write_buff(p, x->sign) : 0;
+		if (flag->tochnost >= x->kdigit)
 		{
-			fzero(p, flag->tochnost - kdigit);
-			if (flag->width >= flag->tochnost)
-				k = flag->width - flag->tochnost;
-			else
-				k = 0;
+			fzero(p, flag->tochnost - x->kdigit);
+			x->k = flag->width >= flag->tochnost ? flag->width - flag->tochnost : 0;
 		}
 	}
 	else
 	{
-		if (sign && flag->hash == 1)
-			ft_write_buff(p, sign);
-		if (flag->tochnost >= kdigit)
+		(x->sign[1] && flag->hash == 1) ? ft_write_buff(p, x->sign) : 0;
+		if (flag->tochnost >= x->kdigit)
 		{
-			space(p, k - (flag->tochnost - kdigit));
-			fzero(p, flag->tochnost - kdigit);
+			space(p, x->k - (flag->tochnost - x->kdigit));
+			fzero(p, flag->tochnost - x->kdigit);
 		}
 		else
-			flag->minus == 0 ? fzero(p, k) : 0;
+			flag->minus == 0 ? fzero(p, x->k) : 0;
 	}
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0 && s[0] == '0' && flag->hash == 0)
-		s[0] = '\0';
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && s[0] == '0' && flag->hash == 0)
-		s[0] = 32;
-	ft_write_buff_and_free(p, s);
-	flag->minus == 1 ? space(p, k) : 0;
-	// if (l == 1)
-	// 	free(sign);
+}
+
+int		check_x(t_buff *p, t_flags *flag, unsigned long long c)
+{
+	t_check_x	x;
+
+	x_str(flag, c, &x);
+	flag->zero = (flag->zero == 1 && flag->dot == 1) ? 0 : flag->zero;
+	flag->width -= (x.sign[1] && flag->hash == 1) ? 2 : 0;
+	x.k = (flag->width - x.kdigit < 0 ? 0 : flag->width - x.kdigit);
+	check_x_with_flag_zero(flag, p, &x);
+	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0 && x.s[0] == '0' && flag->hash == 0)
+		x.s[0] = '\0';
+	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && x.s[0] == '0' && flag->hash == 0)
+		x.s[0] = 32;
+	ft_write_buff_and_free(p, x.s);
+	flag->minus == 1 ? space(p, x.k) : 0;
 	return (0);
 }
 

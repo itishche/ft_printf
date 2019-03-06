@@ -32,11 +32,16 @@ typedef struct s_buff
 typedef struct s_float
 {
 	char	*before;
-	char	after[10];
-	// int	i;
-	// int	count;
+	char	*after;
 }		t_float;
 
+typedef struct s_check_x_struct
+{
+	char		*s;
+	int			kdigit;
+	int 		k;
+	char		sign[3];
+}				t_check_x;
 
 typedef struct	s_flags
 {
@@ -110,10 +115,13 @@ typedef struct	s_flags
 	int			ft_ll_x(unsigned long long c, t_buff *p, t_flags *flag);
 	int			ft_l_x(unsigned long int c, t_buff *p, t_flags *flag);
 	int			ft_j_x(intmax_t c, t_buff *p, t_flags *flag);
+	void		ft_bzero(void *str, size_t n);
 
-
+	int			ft_recursive_power(int nb, int power);
 	int			ft_o(int c, t_buff *p, t_flags *flag);
-
+	int			ft_float(double c, t_buff *p, t_flags *flag);
+	char		*ft_strcpy(char *dst, char *src);
+	char		*ft_strcat(char *s1, char *s2);
 	char		*ft_itoa_base(uintmax_t value, int base, t_flags *flag);
 	int			fzero(t_buff *p, int size);
 	char		*ft_strchr(const char *str, int symb);
@@ -122,7 +130,7 @@ typedef struct	s_flags
 	void		ft_bzero(void *str, size_t n);
 	int			ft_write_buff(t_buff *p, char *s);
 	int			ft_strlen(char *str);
-	void 		ft_strcat(t_buff *p, const char *s2);
+	// void 		ft_strcat(t_buff *p, const char *s2);
 	int 		ft_write_buff_and_free(t_buff *p, char *s);
 	char		*ft_strnew(size_t size);
 
