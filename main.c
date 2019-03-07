@@ -872,33 +872,47 @@ int		main(void)
 
   //     printf("* **************** FLOAT TESTS ***************************** *\n");
 
-  // printf("1)\no{%.19f}\n", 0.0004242);
-  // ft_printf("m{%.19f}\n\n", 0.0004242);
+  printf("1)\no{%.18f}\n", 0.0004242);
+  ft_printf("m{%.18f}\n\n", 0.0004242);
 
-  // printf("2)\n{%.50f}\n", 42.42424242);
-  // ft_printf("{%.50f}\n\n", 42.42424242);
 
-  // printf("3)\n{%f}\n", 42.424242);
-  // ft_printf("{%f}\n\n", 42.424242);
+  printf("3)\n{%f}\n", 42.424242);
+  ft_printf("{%f}\n\n", 42.424242);
 
-  // printf("4)\n{%.f}\n", 42.42);
-  // ft_printf("{%.f}\n\n", 42.42);
+  printf("4)\n{%.f}\n", 42.42);
+  ft_printf("{%.f}\n\n", 42.42);
 
-  // printf("5)\n{%.0f}\n", 42.42);
-  // ft_printf("{%.0f}\n\n", 42.42);
+  printf("5)\n{%.0f}\n", 42.42);
+  ft_printf("{%.0f}\n\n", 42.42);
 
-  // printf("6)\n{%.2f}\n", 42.42);
-  // ft_printf("{%.2f}\n\n", 42.42);
+  printf("6)\n{%.2f}\n", 42.42);
+  ft_printf("{%.2f}\n\n", 42.42);
 
-  // printf("7)\n{%.3f}\n", 42.42);
-  // ft_printf("{%.3f}\n\n", 42.42);
+  printf("7)\n{%.3f}\n", 42.42);
+  ft_printf("{%.3f}\n\n", 42.42);
 
-  // printf("8)\n{%.10f}\n", 42.42);
-  // ft_printf("{%.10f}\n\n", 42.42);
+  printf("8)\n{%.10f}\n", 42.42);
+  ft_printf("{%.10f}\n\n", 42.42);
 
-  // printf("9)\n{%.20f}\n", 42.42);
-  // ft_printf("{%.20f}\n\n", 42.42);
+  printf("9)\n{%.16f}\n", 42.42);
+  ft_printf("{%.16f}\n\n", 42.42);
 
+  printf("9_1)\no{%.1f}\n", 42.99);
+  ft_printf("m{%.1f}\n\n", 42.99);
+
+  printf("%f\n", 99.999999);
+  ft_printf("%f\n\n", 99.999999);
+
+ printf("%f\n", 99.9999999);
+  ft_printf("%f\n\n", 99.9999999);
+
+  printf("%.f\n", 2.5);
+  ft_printf("%.f\n\n", 2.5);
+
+
+ printf("%.f\n", 3.5);
+  ft_printf("%.f\n\n", 3.5);
+  
   // printf("9.1)\n{%.200f}\n", 42.42);
   // ft_printf("{%.200f}\n\n", 42.42);
 
@@ -909,6 +923,6 @@ int		main(void)
   // printf("{%.20000f}\n\n", 42.42);
 
     
-// system("leaks a.out");
+system("leaks a.out");
     return (0);
 }

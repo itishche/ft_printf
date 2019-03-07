@@ -15,7 +15,7 @@ static int 	number_of_digits(unsigned long long n)
 	return(count + 1);
 }
 
-static char	*my_putnbr(unsigned long long n)
+char	*my_putnbr_u(unsigned long long n)
 {
 	int sign;
 	char *s;
@@ -40,7 +40,7 @@ int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 	int		kdigit;
 	int 	k;
 
-	s = my_putnbr(c);
+	s = my_putnbr_u(c);
 	kdigit = ft_strlen(s);	
 	flag->plus == 1 ? flag->width-- : 0;
 	if (flag->zero == 1 && flag->dot == 1)

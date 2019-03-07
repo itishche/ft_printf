@@ -33,7 +33,7 @@ static int 	number_of_digits(long long int n)
 	return(count + 1);
 }
 
-static char	*my_putnbr(long long int n)
+char	*my_putnbr_int(long long int n)
 {
 	int sign;
 	char *s;
@@ -76,7 +76,7 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 	int 	kdigit;
 	int k;
 
-	s = my_putnbr(c);
+	s = my_putnbr_int(c);
 	sign = ((c < 0) ? '-' : '+');
 	kdigit = ft_strlen(s);
 	if (flag->zero == 1 && flag->dot == 1)
@@ -126,16 +126,54 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 	return (0);
 }
 
-void	float_function(t_float	*f, t_flags *flag, int sign)
+void			*ft_strjoin(char *s1, char *s2)
+{
+	char	*ptr;
+
+	if (s1 != 0 && s2 != 0)
+	{
+		ptr = (char *)malloc(sizeof(char) *
+			(ft_strlen(s1) + ft_strlen(s2) + 1));
+		if (ptr == 0)
+			return (NULL);
+		else
+		{
+			ft_strcpy(ptr, s1);
+			ft_strcat(ptr, s2);
+			return (ptr);
+		}
+	}
+	else
+		return (NULL);
+}
+
+int		float_function(t_float	*f, t_flags *flag)
 {
 	int i;
 	int k;
 
-	k = ft_strlen(f->before);
-
 	i = flag->tochnost;
-	
-
+	k = 0;
+	while (k == 0)
+	{
+		if (f->after[i] >= '5')
+			while (k == 0 && i >= 0)
+				if (f->after[i - 1] != '9')
+				{
+					f->after[i - 1] += 1;
+					k = 1;
+				}
+				else
+				{
+					k = (i == 1 && f->after[0] == '9') ? 2 : 0;
+					f->after[i - 1] = '0';
+					i--;
+				}
+		else
+			k = 1;
+	}
+	f->after[flag->tochnost] = '\0';
+	return (k);
 }
 
 int		ft_float(double c, t_buff *p, t_flags *flag)
@@ -144,40 +182,39 @@ int		ft_float(double c, t_buff *p, t_flags *flag)
 	int		sign;
 	int		k;
 	double	n;
+	int i;
+	char *s;
 //По умолчанию выводятся с точностью 6, если число по модулю меньше единицы, перед десятичной точкой пишется 0
 // чекнуть точность
 	//ЕСЛИ ТОЧНОСТЬ НОЛЬ, ТО СРАЗУ ОКРУГЛИТЬ ЦЕЛУЮ ЧАСТЬ НА +1
-	sign = ((int)c < 0) ? '-' : '+';
 
-	n = c - (int)c;
-	k = 0;
+	sign = ((int)c < 0) ? '-' : '+';
 	if (flag->dot == 0)
 		flag->tochnost = 6;
-	f.after = ft_strnew(flag->tochnost);
-	while (k < flag->tochnost)
+	k = flag->tochnost + 1;
+	n = c - (int)c;
+	i = 0;
+	f.after  = ft_strnew(k);
+	while (k--)
 	{
 		n = n * 10.0;
-		f.after[k++] = (int)n + 48;
+		f.after[i++] = (int)n + 48;
 		n = n - (int)n;
 	}
-	if (flag->tochnost == 0 && f.after[0] >= '5' && ((int)c % 2 != 0 || ((int)c % 2 == 0 && (int)c >= 10)))
+	i = (int)c;
+	if (flag->tochnost == 0 && flag->dot == 1)
 	{
-		printf("123456\n");
-		f.before = my_putnbr((int)c + 1);
-		f.after[0] = '\0';
-	}
-	else if (flag->tochnost == 0 &&
-		((f.after[0] >= '5' && ((int)c % 2 == 0) && (int)c < 10) || (f.after[0] < 5)))
-	{
-		printf("000000000\n");
-		f.before = my_putnbr((int)c);
-		f.after[0] = '\0';
+		if (f.after[0] >= '5' && (i % 2 != 0 || (i % 2 == 0 && i >= 10)))
+			f.before = my_putnbr_int(i + 1);
+		else
+			f.before = my_putnbr_int(i);
+		free(f.after);
 	}
 	else
 	{
-		printf("ффффффффффффффф\n");
-		f.before = my_putnbr((int)c);
-		float_function(&f, flag, sign);
+		if ((k = float_function(&f, flag)) == 2)
+			i++;
+		f.before = my_putnbr_int(i);
 	}
 	ft_write_buff_and_free(p, f.before);
 	if (flag->tochnost != 0)
