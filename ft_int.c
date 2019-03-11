@@ -112,10 +112,7 @@ int		check_int(t_buff *p, t_flags *flag, long long int c)
 			fzero(p, flag->tochnost - kdigit);
 		}
 		else 
-		{	
-			if (flag->minus == 0)
-				fzero(p, k);
-		}
+			flag->minus == 0 ? fzero(p, k) : 0;
 	}
 	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0 && s[0] == '0')
 		s[0] = '\0';
@@ -147,84 +144,7 @@ void			*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 }
 
-int		float_function(t_float	*f, t_flags *flag)
-{
-	int i;
-	int k;
 
-	i = flag->tochnost;
-	k = 0;
-	while (k == 0)
-	{
-		if (f->after[i] >= '5')
-			while (k == 0 && i >= 0)
-				if (f->after[i - 1] != '9')
-				{
-					f->after[i - 1] += 1;
-					k = 1;
-				}
-				else
-				{
-					k = (i == 1 && f->after[0] == '9') ? 2 : 0;
-					f->after[i - 1] = '0';
-					i--;
-				}
-		else
-			k = 1;
-	}
-	f->after[flag->tochnost] = '\0';
-	return (k);
-}
-
-int		ft_float(double c, t_buff *p, t_flags *flag)
-{
-	t_float	f;
-	int		sign;
-	int		k;
-	double	n;
-	int i;
-	char *s;
-//По умолчанию выводятся с точностью 6, если число по модулю меньше единицы, перед десятичной точкой пишется 0
-// чекнуть точность
-	//ЕСЛИ ТОЧНОСТЬ НОЛЬ, ТО СРАЗУ ОКРУГЛИТЬ ЦЕЛУЮ ЧАСТЬ НА +1
-
-	sign = ((int)c < 0) ? '-' : '+';
-	if (flag->dot == 0)
-		flag->tochnost = 6;
-	k = flag->tochnost + 1;
-	n = c - (int)c;
-	i = 0;
-	f.after  = ft_strnew(k);
-	while (k--)
-	{
-		n = n * 10.0;
-		f.after[i++] = (int)n + 48;
-		n = n - (int)n;
-	}
-	i = (int)c;
-	if (flag->tochnost == 0 && flag->dot == 1)
-	{
-		if (f.after[0] >= '5' && (i % 2 != 0 || (i % 2 == 0 && i >= 10)))
-			f.before = my_putnbr_int(i + 1);
-		else
-			f.before = my_putnbr_int(i);
-		free(f.after);
-	}
-	else
-	{
-		if ((k = float_function(&f, flag)) == 2)
-			i++;
-		f.before = my_putnbr_int(i);
-	}
-	ft_write_buff_and_free(p, f.before);
-	if (flag->tochnost != 0)
-	{
-		ft_write_buff(p, ".");
-		ft_write_buff_and_free(p, f.after);
-	}
-
-	return (0);
-}
 
 
 int		ft_zd_int(size_t c, t_buff *p , t_flags *flag)

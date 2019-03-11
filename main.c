@@ -872,47 +872,120 @@ int		main(void)
 
   //     printf("* **************** FLOAT TESTS ***************************** *\n");
 
-  printf("1)\no{%.18f}\n", 0.0004242);
-  ft_printf("m{%.18f}\n\n", 0.0004242);
+ //  printf("1)\no{%.18f}\n", 0.0004242);
+ //  ft_printf("m{%.18f}\n\n", 0.0004242);
 
 
-  printf("3)\n{%f}\n", 42.424242);
-  ft_printf("{%f}\n\n", 42.424242);
+ //  printf("3)\n{%f}\n", 42.424242);
+ //  ft_printf("{%f}\n\n", 42.424242);
 
-  printf("4)\n{%.f}\n", 42.42);
-  ft_printf("{%.f}\n\n", 42.42);
+ //  printf("4)\n{%.f}\n", 42.42);
+ //  ft_printf("{%.f}\n\n", 42.42);
 
-  printf("5)\n{%.0f}\n", 42.42);
-  ft_printf("{%.0f}\n\n", 42.42);
+ //  printf("5)\n{%.0f}\n", 42.42);
+ //  ft_printf("{%.0f}\n\n", 42.42);
 
-  printf("6)\n{%.2f}\n", 42.42);
-  ft_printf("{%.2f}\n\n", 42.42);
+ //  printf("6)\n{%.2f}\n", 42.42);
+ //  ft_printf("{%.2f}\n\n", 42.42);
 
-  printf("7)\n{%.3f}\n", 42.42);
-  ft_printf("{%.3f}\n\n", 42.42);
+ //  printf("7)\n{%.3f}\n", 42.42);
+ //  ft_printf("{%.3f}\n\n", 42.42);
 
-  printf("8)\n{%.10f}\n", 42.42);
-  ft_printf("{%.10f}\n\n", 42.42);
+ //  printf("8)\n{%.10f}\n", 42.42);
+ //  ft_printf("{%.10f}\n\n", 42.42);
 
-  printf("9)\n{%.16f}\n", 42.42);
-  ft_printf("{%.16f}\n\n", 42.42);
+ //  printf("9)\n{%.16f}\n", 42.42);
+ //  ft_printf("{%.16f}\n\n", 42.42);
 
-  printf("9_1)\no{%.1f}\n", 42.99);
-  ft_printf("m{%.1f}\n\n", 42.99);
+ //  printf("9_1)\no{%.1f}\n", 42.99);
+ //  ft_printf("m{%.1f}\n\n", 42.99);
 
-  printf("%f\n", 99.999999);
-  ft_printf("%f\n\n", 99.999999);
+ //  printf("%f\n", 99.999999);
+ //  ft_printf("%f\n\n", 99.999999);
 
- printf("%f\n", 99.9999999);
-  ft_printf("%f\n\n", 99.9999999);
+ // printf("%f\n", 99.9999999);
+ //  ft_printf("%f\n\n", 99.9999999);
 
-  printf("%.f\n", 2.5);
-  ft_printf("%.f\n\n", 2.5);
+ //  printf("%.f\n", 2.5);
+ //  ft_printf("%.f\n\n", 2.5);
 
 
- printf("%.f\n", 3.5);
-  ft_printf("%.f\n\n", 3.5);
+ // printf("%.f\n", 3.5);
+ //  ft_printf("%.f\n\n", 3.5);
+
+
+  // printf("8)\n{%.10f}\n", -42.42);
+  // ft_printf("{%.10f}\n\n", -42.42);
+
+ //  printf("9)\n{%.16f}\n", -42.42);
+ //  ft_printf("{%.16f}\n\n", -42.42);
+
+ //  printf("9_1)\no{%.1f}\n", -42.99);
+ //  ft_printf("m{%.1f}\n\n", -42.99);
+
+ //  printf("%f\n", -99.999999);
+ //  ft_printf("%f\n\n", -99.999999);
+
+ // printf("%f\n", -99.9999999);
+ //  ft_printf("%f\n\n", -99.9999999);
+
+ //  printf("%.f\n", -2.5);
+ //  ft_printf("%.f\n\n", -2.5);
+
+
+ // printf("%.f\n", -3.5);
+ //  ft_printf("%.f\n\n", -3.5);
+
+ //   printf("%.2f\n", -13.156);
+ //  ft_printf("%.2f\n\n", -13.156);
+
+ //  printf("12)\n{%-15f}\n", -0.0);
+ //  ft_printf("{%-15f}\n\n", -0.0);
   
+
+
+
+// printf("original res - %d\n", printf("{%f}", -0.0));
+//     ft_printf("res - %d\n", ft_printf("{%f}", -0.0));
+//         printf("original res - %d\n", printf("{%.1f}", -0.0));
+//     ft_printf("res - %d\n", ft_printf("{%.1f}", -0.0));
+//         printf("original res - %d\n", printf("{%.f}", -0.0));
+//     ft_printf("res - %d\n", ft_printf("{%.f}", -0.0));
+//         printf("original res - %d\n", printf("{%+.8f}", -0.0));
+//     ft_printf("res - %d\n", ft_printf("{%+.8f}", -0.0));
+    
+
+
+
+    printf("* **************** FLOAT TESTS ***************************** *\n");
+
+  // printf("1)\n{%.19f}\n", 0.0004242);
+  // ft_printf("{%.19f}\n\n", 0.0004242);
+
+  // printf("2)\n{%.50f}\n", 42.42424242);
+  // ft_printf("{%.50f}\n\n", 42.42424242);
+
+  // printf("3)\n{%f}\n", 42.424242);
+  // ft_printf("{%f}\n\n", 42.424242);
+
+  // printf("4)\n{%.f}\n", 42.42);
+  // ft_printf("{%.f}\n\n", 42.42);
+
+  // printf("5)\n{%.0f}\n", 42.42);
+  // ft_printf("{%.0f}\n\n", 42.42);
+
+  // printf("6)\n{%.2f}\n", 42.42);
+  // ft_printf("{%.2f}\n\n", 42.42);
+
+  // printf("7)\n{%.3f}\n", 42.42);
+  // ft_printf("{%.3f}\n\n", 42.42);
+
+  // printf("8)\n{%.10f}\n", 42.42);
+  // ft_printf("{%.10f}\n\n", 42.42);
+
+  // printf("9)\n{%.20f}\n", 42.42);
+  // ft_printf("{%.20f}\n\n", 42.42);
+
   // printf("9.1)\n{%.200f}\n", 42.42);
   // ft_printf("{%.200f}\n\n", 42.42);
 
@@ -922,7 +995,146 @@ int		main(void)
   // printf("9.3)\n{%.20000f}\n", 42.42);
   // printf("{%.20000f}\n\n", 42.42);
 
-    
+  // printf("10)\n{%15f}\n", 42.42);
+  // ft_printf("{%15f}\n\n", 42.42);
+
+  // printf("11)\n{%15f}\n", -42.42);
+  // ft_printf("{%15f}\n\n", -42.42);
+
+  // printf("12)\n{%-15f}\n", -0.0);
+  // ft_printf("{%-15f}\n\n", -0.0);
+
+  // printf("13)\n{%15f}\n", 0.0);
+  // ft_printf("{%15f}\n\n", 0.0);
+
+  // printf("14)\n{%20f}\n", 42.42);
+  // ft_printf("{%20f}\n\n", 42.42);
+
+  // printf("15)\n{%20.f}\n", 42.42);
+  // ft_printf("{%20.f}\n\n", 42.42);
+
+  // printf("16)\n{%20.0f}\n", 42.42);
+  // ft_printf("{%20.0f}\n\n", 42.42);
+
+  // printf("17)\n{%020.0f}\n", 42.42);
+  // ft_printf("{%020.0f}\n\n", 42.42);
+
+  // printf("18)\n{% 020.0f}\n", 42.42);
+  // ft_printf("{% 020.0f}\n\n", 42.42);
+
+  // printf("19)\n{%020.0f}\n", -42.42);
+  // ft_printf("{%020.0f}\n\n", -42.42);
+
+  // printf("20)\n{%-20.0f}\n", 42.42);
+  // ft_printf("{%-20.0f}\n\n", 42.42);
+
+  // printf("21)\n{%-20.0f}\n", 42.42);
+  // ft_printf("{%-20.0f}\n\n", 42.42);
+
+  // printf("22)\n{%-20.1f}\n", 42.42);
+  // ft_printf("{%-20.1f}\n\n", 42.42);
+
+  // printf("23)\n{%-20f}\n", 42.42);
+  // ft_printf("{%-20f}\n\n", 42.42);
+
+  // printf("24\n{%+20.f}\n", 42.42);
+  // ft_printf("{%+20.f}\n\n", 42.42);
+
+  // printf("25\n{%-+20.f}\n", 42.42);
+  // ft_printf("{%-+20.f}\n\n", 42.42);
+
+  // printf("26)\n{%-+20.f}\n", -42.42);
+  // ft_printf("{%-+20.f}\n\n", -42.42);
+
+  // printf("27)\n{%-+20.200f}\n", -42.42);
+  // ft_printf("{%-+20.200f}\n\n", -42.42);
+
+  // printf("28)\n{%+020.200f}\n", -42.42);
+  // ft_printf("{%+020.200f}\n\n", -42.42);
+
+  // printf("29)\n{%10f}\n", -42.42);
+  // ft_printf("{%10f}\n\n", -42.42);
+
+  // printf("30)\n{%.f}\n", 3.5);
+  // ft_printf("{%.f}\n\n", 3.5);
+
+  // printf("31)\n{%.f}\n", 3.2);
+  // ft_printf("{%.f}\n\n", 3.2);
+
+  // printf("32)\n{%.1f}\n", 3.22);
+  // ft_printf("{%.1f}\n\n", 3.22);
+
+  // printf("33)\n{%.1f}\n", 3.27);
+  // ft_printf("{%.1f}\n\n", 3.27);
+
+  // printf("34)\n{%.1f}\n", 3.25);
+  // ft_printf("{%.1f}\n\n", 3.25);
+
+  // printf("35)\n{%.f}\n", 2.5);
+  // ft_printf("{%.f}\n\n", 2.5);
+
+  // printf("36)\n{%.7f}\n", 99.999);
+  // ft_printf("{%.7f}\n\n", 99.999);
+
+  // printf("37)\n{%.7f}\n", 99.9999999);
+  // ft_printf("{%.7f}\n\n", 99.9999999);
+
+  // printf("38)\n{%.7f}\n", 99.99999999);
+  // ft_printf("{%.7f}\n\n", 99.99999999);
+
+  // printf("39)\n{%.7f}\n", 99.99999999999);
+  // ft_printf("{%.7f}\n\n", 99.99999999999);
+
+  // printf("40)\n{%#.f}\n", 99.9);
+  // ft_printf("{%#.f}\n\n", 99.9);
+
+  // printf("40.1)\n{%#.f}\n", 98.9);
+  // ft_printf("{%#.f}\n\n", 98.9);
+
+  // printf("41)\n{%.f}\n", 99.5);
+  // ft_printf("{%.f}\n\n", 99.5);
+
+  // printf("41.1)\n{%.f}\n", 98.5);
+  // ft_printf("{%.f}\n\n", 98.5);
+
+  // printf("42)\n{%.Lf}\n", 9999999999999999999.9l);
+  // ft_printf("{%.Lf}\n\n", 9999999999999999999.9l);
+  // // округление в большую сторону идет только по нечетным числам,
+  // // в меньшую по четным (примеры ниже)
+  // printf("43)\n{%.f}\n", 2.5);
+  // ft_printf("{%.f}\n\n", 2.5);
+
+  // printf("44)\n{%.f}\n", 3.5);
+  // ft_printf("{%.f}\n\n", 3.5);
+
+  // printf("45)\n{%.2f}\n", 3.559);
+  // ft_printf("{%.2f}\n\n", 3.559);
+
+  // printf("46)\n{%.3f}\n", 3.559);
+  // ft_printf("{%.3f}\n\n", 3.559);
+
+  // printf("47)\n{%.2f}\n", 3.59999999);
+  // ft_printf("{%.2f}\n\n", 3.59999999);
+
+  // printf("48)\n{%.2f}\n", 3.55111111);
+  // ft_printf("{%.2f}\n\n", 3.55111111);
+
+  // printf("49)\n{%f}\n", 0.0/0.0);
+  // ft_printf("{%f}\n\n", 0.0/0.0);
+
+  // printf("50)\n{%f}\n", 3.0/0.0);
+  // ft_printf("{%f}\n\n", 3.0/0.0);
+
+  // printf("51)\n{%f}\n", -3.0/0.0);
+  // ft_printf("{%f}\n\n", -3.0/0.0);
+
+  char *p;
+  p = "hell234567890";
+  printf("%p\n", p);
+
+int i;
+i = p;
+printf("i = %d\n", i);
 system("leaks a.out");
     return (0);
 }

@@ -125,10 +125,6 @@ int ft_str(void *str, t_buff *p, t_flags *flag)
 		return(space(p, flag->width));
 	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && flag->zero == 1)
 		return(fzero(p, flag->width));
-	// if (flag->dot == 1 && flag->tochnost != 0)
-	// 	bla(s, p, flag);	
-	// else
-	// 	bla_bla(s, p, flag);
 	(flag->dot == 1 && flag->tochnost != 0) ? bla(s, p, flag) : bla_bla(s, p, flag);
 	checkbuff(p);
 	return (0);

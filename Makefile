@@ -20,7 +20,8 @@ SRC		=	./ft_printf.c \
 			./ft_u.c \
 			./ft_o.c \
 			./ft_itoa_base.c \
-			./ft_x.c
+			./ft_x.c \
+			./ft_float.c 
 
 
 OBJ 	= ./ft_printf.o \
@@ -32,7 +33,8 @@ OBJ 	= ./ft_printf.o \
 			./ft_u.o \
 			./ft_o.o \
 			./ft_itoa_base.o \
-			./ft_x.o
+			./ft_x.o \
+			./ft_float.o
 
 all: $(NAME)
 

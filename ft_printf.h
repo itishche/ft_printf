@@ -120,6 +120,7 @@ typedef struct	s_flags
 	int			ft_recursive_power(int nb, int power);
 	int			ft_o(int c, t_buff *p, t_flags *flag);
 	int			ft_float(double c, t_buff *p, t_flags *flag);
+	
 	void		*ft_strjoin(char *s1, char *s2);
 	char		*ft_strcpy(char *dst, char *src);
 	char		*ft_strcat(char *s1, char *s2);
