@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_u.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: itishche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/12 13:12:21 by itishche          #+#    #+#             */
+/*   Updated: 2019/03/12 13:12:26 by itishche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -32,13 +42,11 @@ char	*my_putnbr_u(unsigned long long n)
 	return (s);
 }
 
-
-
 int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 {
 	char	*s;
 	int		kdigit;
-	int 	k;
+	int		k;
 
 	s = my_putnbr_u(c);
 	kdigit = ft_strlen(s);	
@@ -48,7 +56,6 @@ int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
 	if (flag->zero == 0)
 	{
-		//%-5.10d
 		if (flag->tochnost >= kdigit && flag->width >= flag->tochnost)
 			k = k -(flag->tochnost - kdigit);
 		if (flag->tochnost >= kdigit && flag->width < flag->tochnost)
@@ -56,10 +63,7 @@ int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 		else 
 			flag->minus == 0 ? space(p, k) : 0;
 		if (flag->tochnost >= kdigit)
-		{
 			fzero(p, flag->tochnost - kdigit);
-			// k = 0;
-		}
 	}
 	else
 	{
@@ -79,50 +83,5 @@ int		check_u(t_buff *p, t_flags *flag, unsigned long long c)
 		s[0] = ' ';
 	ft_write_buff_and_free(p, s);
 	flag->minus == 1 ? space(p, k) : 0;
-	return (0);
-}
-
-int		ft_hh_u(unsigned char c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_u(p, flag, z);
-	return (0);
-}
-
-int		ft_h_u(unsigned short int c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_u(p, flag, z);
-	return (0);
-}
-
-int		ft_ll_u(unsigned long long c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = c;
-	check_u(p, flag, z);
-	return (0);
-}
-
-int		ft_l_u(unsigned long int c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_u(p, flag, z);
-	return (0);
-}
-
-int		ft_u(unsigned int c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_u(p, flag, z);
 	return (0);
 }

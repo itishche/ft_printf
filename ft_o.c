@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_o(int c, t_buff *p, t_flags *flag)
+int		ft_o(long int c, t_buff *p, t_flags *flag)
 {
 	char	*s;
 	int		kdigit;

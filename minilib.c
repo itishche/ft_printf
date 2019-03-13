@@ -25,19 +25,6 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-// void	ft_strcat(t_buff *p, const char *s2)
-// {
-// 	int j;
-
-// 	j = 0;
-// 	while (*s2)
-// 	{	
-// 		p->buff[p->i++] = *s2;
-// 		s2++;
-// 	}
-// 	p->buff[p->i] = '\0';
-// }
-
 int	space(t_buff *p, int size)
 {
 	while (size--)

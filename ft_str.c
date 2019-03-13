@@ -12,25 +12,21 @@
 
 #include "ft_printf.h"
 
-
-
-
-int ft_write_buff_and_free(t_buff *p, char *s)
+int				ft_write_buff_and_free(t_buff *p, char *s)
 {
 	ft_write_buff(p, s);
 	free(s);
 	return (0);
 }
 
-
-int ft_left_str(char *mas, t_buff *p, int size)
+int				ft_left_str(char *mas, t_buff *p, int size)
 {
 	ft_write_buff(p, mas);
 	space(p, size);
 	return (0);
 }
 
-int ft_right_str(char *mas, t_buff *p, int size, t_flags *flag)
+int				ft_right_str(char *mas, t_buff *p, int size, t_flags *flag)
 {
 	if (flag->zero == 1)
 		fzero(p, size);
@@ -51,25 +47,25 @@ static	void	ft_null(char *s)
 	s[6] = '\0';
 }
 
-int ft_left_str_and_free(char *mas, t_buff *p, int k)
+int				ft_left_str_and_free(char *mas, t_buff *p, int k)
 {
 	ft_left_str(mas, p, k);
 	free(mas);
 	return (0);
 }
 
-int ft_right_str_and_free(char *mas, t_buff *p, int k, t_flags *flag)
+int				ft_right_str_and_free(char *mas, t_buff *p, int k, t_flags *flag)
 {
 	ft_right_str(mas, p, k, flag);
 	free(mas);
 	return (0);
 }
 
-int	bla(char *s, t_buff *p, t_flags *flag)
+int				bla(char *s, t_buff *p, t_flags *flag)
 {
-	char *mas;
-	int k;
-	int i;
+	char	*mas;
+	int		k;
+	int		i;
 
 	k = flag->tochnost;
 	mas = ft_strnew(flag->tochnost);
@@ -78,6 +74,8 @@ int	bla(char *s, t_buff *p, t_flags *flag)
 		mas[i++] = *s++;
 	if (flag->width != 0)
 		k = flag->width - flag->tochnost + k + 1;
+	else
+		k = 0;
 	if (k == 0)
 		return(ft_write_buff_and_free(p, mas));
 	if (k < 0)
@@ -87,10 +85,10 @@ int	bla(char *s, t_buff *p, t_flags *flag)
 	return (ft_left_str_and_free(mas, p, k));
 }
 
-int bla_bla(char *s, t_buff *p, t_flags *flag)
+int				bla_bla(char *s, t_buff *p, t_flags *flag)
 {
-	int k;
-	int len;
+	int	k;
+	int	len;
 
 	len = ft_strlen(s);
 	k = flag->width - len;
@@ -103,7 +101,7 @@ int bla_bla(char *s, t_buff *p, t_flags *flag)
 	return (0);
 }
 
-int ft_str(void *str, t_buff *p, t_flags *flag)
+int				ft_str(void *str, t_buff *p, t_flags *flag)
 {
 	char *s;
 	char fnull[7];

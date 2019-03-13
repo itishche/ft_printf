@@ -18,7 +18,7 @@ static int 	number_of_digits(long long int n)
 	long long int n2;
 
 	count = 0;
-	if (n == -9223372036854775808)
+	if (n == -9223372036854775807 - 1)
 	{
 		count++;
 		n2 = 922337203685477580;
@@ -44,7 +44,7 @@ char	*my_putnbr_int(long long int n)
 	i = number_of_digits(n);
 	s = (char*)malloc(sizeof(char) * i + 1);
 	s[i] = '\0';
-	if (n == -9223372036854775808)
+	if (n == -9223372036854775807 - 1)
 	{
 		s[--i] = 8 + '0';
 		n2 = 922337203685477580;

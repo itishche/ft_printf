@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_recursive_power(int nb, int power)
+int		ft_recursive_power(uintmax_t nb, int power)
 {
 	if (power < 0)
 		return (0);
@@ -33,13 +33,15 @@ char	*ft_itoa_base(uintmax_t value, int base, t_flags *flag)
 	int		sign;
 	char	*str;
 	int		i;
+	uintmax_t temp;
 
 	sign = 0;
-	i = 0;
+	i = 1;
+	temp = value;
+	while (temp /= base)
+		i++;
 	if (flag->hash == 1 && flag->o == 1)
 		sign = 1;
-	while (ft_recursive_power(base, i) - 1 < value)
-		i++;
 	str = (char*)malloc(sizeof(char) * (i + sign));
 	str[i + sign] = '\0';
 	while (i-- > 0)
@@ -48,9 +50,6 @@ char	*ft_itoa_base(uintmax_t value, int base, t_flags *flag)
 		value = value / base;
 	}
 	if (sign != 0)
-	{
 		str[0] = '0';
-		str[1] = (sign == 2) ? 'x' : str[1];
-	}
 	return (str);
 }

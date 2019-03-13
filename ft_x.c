@@ -25,15 +25,17 @@ void		ft_toupper(char *s)
 	}
 }
 
-void		x_str(t_flags *flag, unsigned long long c,t_check_x *x)
+static void	x_str(t_flags *flag, uintmax_t c,t_check_x *x)
 {
 	if (c == 0)
 	{
 		x->s = ft_strnew(1);
 		x->s[0] = '0';
+		if (flag->p == 0)
+			flag->hash = 0;
 	}
 	else
-		x->s = ft_itoa_base((intmax_t)c, 16, flag);
+		x->s = ft_itoa_base(c, 16, flag);
 	flag->X == 1 ? ft_toupper(x->s) : 0;
 	ft_bzero(x->sign, sizeof(x->sign));
 	if (flag->hash == 1)
@@ -44,7 +46,7 @@ void		x_str(t_flags *flag, unsigned long long c,t_check_x *x)
 	x->kdigit = ft_strlen(x->s);
 }
 
-static void check_x_with_flag_zero(t_flags *flag, t_buff *p, t_check_x	*x)
+static void	check_x_with_flag_zero(t_flags *flag, t_buff *p, t_check_x	*x)
 {
 	if (flag->zero == 0)
 	{
@@ -73,7 +75,7 @@ static void check_x_with_flag_zero(t_flags *flag, t_buff *p, t_check_x	*x)
 	}
 }
 
-int		check_x(t_buff *p, t_flags *flag, unsigned long long c)
+int		check_x(t_buff *p, t_flags *flag, uintmax_t c)
 {
 	t_check_x	x;
 
@@ -88,59 +90,5 @@ int		check_x(t_buff *p, t_flags *flag, unsigned long long c)
 		x.s[0] = 32;
 	ft_write_buff_and_free(p, x.s);
 	flag->minus == 1 ? space(p, x.k) : 0;
-	return (0);
-}
-
-int		ft_j_x(intmax_t c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_x(p, flag, z);
-	return (0);
-}
-
-int		ft_x(int c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_x(p, flag, z);
-	return (0);
-}
-
-int		ft_hh_x(unsigned char c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_x(p, flag, z);
-	return (0);
-}
-
-int		ft_h_x(unsigned short int c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_x(p, flag, z);
-	return (0);
-}
-
-int		ft_ll_x(unsigned long long c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = c;
-	check_x(p, flag, z);
-	return (0);
-}
-
-int		ft_l_x(unsigned long int c, t_buff *p, t_flags *flag)
-{
-	unsigned long long z;
-	
-	z = (unsigned long long)c;
-	check_x(p, flag, z);
 	return (0);
 }

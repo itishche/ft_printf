@@ -21,7 +21,8 @@ SRC		=	./ft_printf.c \
 			./ft_o.c \
 			./ft_itoa_base.c \
 			./ft_x.c \
-			./ft_float.c 
+			./ft_float.c \
+			./ft_ptr.c
 
 
 OBJ 	= ./ft_printf.o \
@@ -34,7 +35,8 @@ OBJ 	= ./ft_printf.o \
 			./ft_o.o \
 			./ft_itoa_base.o \
 			./ft_x.o \
-			./ft_float.o
+			./ft_float.o \
+			./ft_ptr.o
 
 all: $(NAME)
 

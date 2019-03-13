@@ -25,7 +25,8 @@ static	int		float_function(t_float	*f, t_flags *flag)
 			while (k == 0 && i >= 0)
 				if (f->after[i - 1] != '9')
 				{
-					f->after[i - 1] += 1;
+					if ((f->after[i - 1] - 48) % 2 != 0 || (f->after[i - 1] - 48) % 2 == 0 && f->after[i] != '5')
+						f->after[i - 1] += 1;
 					k = 1;
 				}
 				else
@@ -41,26 +42,26 @@ static	int		float_function(t_float	*f, t_flags *flag)
 	return (k);
 }
 
-void	round_float_numbers(t_flags *flag, t_float	*f, double c,t_buff *p)
+void	round_float_numbers(t_flags *flag, t_float	*f, long double c, t_buff *p)
 {
-	int		k;
-	int		i;
-	double	n;
+	int			k;
+	long int	i;
+	long double	n;
 
 	k = flag->tochnost + 1;
-	n = c - (int)c;
+	n = c - (long int)c;
 	i = 0;
 	f->after  = ft_strnew(k);
 	while (k--)
 	{
 		n = n * 10.0;
-		f->after[i++] = (int)n + 48;
-		n = n - (int)n;
+		f->after[i++] = (long int)n + 48;
+		n = n - (long int)n;
 	}
-	i = (int)c;
+	i = (long int)c;
 	if (flag->tochnost == 0 && flag->dot == 1)
 	{
-		if (f->after[0] >= '5' && (i % 2 != 0 || (i % 2 == 0 && i >= 10)))
+		if (f->after[0] >= '5' && (i % 2 != 0 || (i % 2 == 0 && f->after[0] > '5')))
 			f->before = my_putnbr_int(i + 1);
 		else
 			f->before = my_putnbr_int(i);
@@ -88,20 +89,19 @@ int		ft_minus_zero(double i)
 	return (0);
 }
 
-int		ft_float(double c, t_buff *p, t_flags *flag)
+int		ft_float(long double c, t_buff *p, t_flags *flag)
 {
-	t_float	f;
-	int		sign;
-	int		k;
-	int		i;
-	int		kdigit;
+	t_float		f;
+	int			sign;
+	int			k;
+	long int	i;
+	int			kdigit;
 
-	i = (int)c;
+	i = (long int)c;
 	sign = (i < 0 || ft_minus_zero(c) == 1) ? '-' : '+';
 	c = (sign == '-') ? c * (-1.0) : c;
 	flag->tochnost = (flag->dot == 0) ? 6 : flag->tochnost;
 	round_float_numbers(flag, &f, c, p);
-
 	kdigit = (flag->tochnost != 0) ? ft_strlen(f.before) + ft_strlen(f.after) + 1 : ft_strlen(f.before);
 	if (flag->space == 1 && flag->plus == 0)
 	{
@@ -114,8 +114,6 @@ int		ft_float(double c, t_buff *p, t_flags *flag)
 	}
 	(flag->plus == 1 || sign == '-') ? flag->width-- : 0;
 	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
-	// printf("tochnost = %d,  minus = %d, zero =%d\n", flag->tochnost,flag->minus, flag->zero);
-	// printf("width =%d, kdigits = %d, k = %d\n", flag->width, kdigit, k);
 	if (flag->zero == 0)
 	{
 		(flag->minus == 0) ? space(p, k) : 0;
@@ -129,6 +127,7 @@ int		ft_float(double c, t_buff *p, t_flags *flag)
 		flag->minus == 0 ? fzero(p, k) : 0;
 	}
 	ft_write_buff_and_free(p, f.before);
+	(flag->tochnost == 0 && flag->hash == 1) ? ft_write_buff(p, ".") : 0;
 	if (flag->tochnost != 0)
 	{
 		ft_write_buff(p, ".");

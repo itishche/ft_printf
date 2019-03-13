@@ -26,8 +26,6 @@ void	ft_bzero(void *str, size_t n)
 	}
 }
 
-
-
 int		checkflag(char **car, t_flags *flag)
 {
 	int		i;
@@ -140,7 +138,7 @@ int		checktype(t_flags *flag, char **car)
 		(*car)++;
 		i++;
 	}
-	else if (**car == 'o')
+	else if (**car == 'o' || **car == 'O')
 	{
 		flag->o = 1;
 		(*car)++;
@@ -170,19 +168,72 @@ int		checktype(t_flags *flag, char **car)
 		(*car)++;
 		i++;
 	}
-	else if (**car == 'f')
+	else if (**car == 'f' || **car == 'F')
 	{
 		flag->f = 1;
 		(*car)++;
 		i++;
 	}
-    //    else if (*car == 'f')
-    //        flag->f = 1;
-    //    else if (*car == 'F')
-    //        flag->F = 1;
-    //    else if (*car == 'p')
-    //        flag->p = 1;
+	else if (**car == 'p')
+	{
+		flag->p = 1;
+		(*car)++;
+		i++;
+	}
+	else
+		flag->minwidth = 1;
 	return (i);
+}
+
+int		ft_flag_d(va_list ap, t_buff *p, t_flags *flag)
+{
+	if (flag->l == 0 && flag->ll == 0 &&
+		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
+		return (check_int(p, flag, (long long int)(int)va_arg(ap, void*)));
+	else if (flag->l == 1)
+		return (check_int(p, flag, (long long int)(long int)va_arg(ap, void*)));
+	else if (flag->j == 1 || flag->ll == 1)
+		return (check_int(p, flag, (long long int)va_arg(ap, void*)));
+	else if (flag->h == 1)
+		return (check_int(p, flag, (short int)va_arg(ap, void*)));
+	else if (flag->hh == 1)
+		return (check_int(p, flag, (signed char)va_arg(ap, void*)));
+	else if (flag->z == 1)
+		return (check_int(p, flag, (size_t)va_arg(ap, void*)));
+	return(0);
+}
+
+int		ft_flag_u(va_list ap, t_buff *p, t_flags *flag)
+{
+	if (flag->u == 1 && flag->l == 0 && flag->ll == 0 &&
+		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
+		return (check_u( p, flag,(unsigned int)va_arg(ap, void*)));
+	if ((flag->l == 1) || flag->U == 1)
+		return (check_u(p, flag, (unsigned long)va_arg(ap, void*)));
+	else if ((flag->ll == 1 || flag->j == 1))
+		return (check_u(p, flag, (unsigned long long)va_arg(ap, void*)));
+	else if (flag->h == 1)
+		return (check_u(p, flag, (unsigned short int)va_arg(ap, void*)));
+	else if (flag->hh == 1)
+		return (check_u(p, flag, (unsigned char)va_arg(ap, void*)));	
+	return(0);
+}
+int		ft_flag_x(va_list ap, t_buff *p, t_flags *flag)
+{
+	if (flag->l == 0 && flag->ll == 0 &&
+		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
+		return (check_x(p, flag, (unsigned int)va_arg(ap, void*)));
+	else if (flag->l == 1)
+		return (check_x(p, flag, (unsigned long int)va_arg(ap, void*)));
+	else if (flag->ll == 1)
+		return (check_x(p, flag, (unsigned long long int)va_arg(ap, void*)));
+	else if (flag->h == 1)
+		return (check_x(p, flag, (unsigned short int)va_arg(ap, void*)));
+	else if (flag->hh == 1)
+		return (check_x(p, flag, (unsigned char)va_arg(ap, void*)));
+	else if (flag->j == 1)
+		return (check_x(p, flag, (uintmax_t)va_arg(ap, void*)));
+	return (0);
 }
 
 int		checkall(va_list ap, t_buff *p, t_flags *flag)
@@ -191,53 +242,24 @@ int		checkall(va_list ap, t_buff *p, t_flags *flag)
 		return (ft_str(va_arg(ap, void*), p, flag));
 	if (flag->c == 1)
 		return (ft_char(va_arg(ap, void*), p, flag));
-	if (flag->d == 1 && flag->l == 0 && flag->ll == 0 &&
-		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
-		return (ft_int((int)va_arg(ap, void*), p , flag));
-	if (flag->d == 1 && flag->l == 1)
-		return (ft_l_int((long int)va_arg(ap, void*), p , flag));
-	if (flag->d == 1 && (flag->j == 1 || flag->ll == 1))
-		return (ft_ll_int((long long int)va_arg(ap, void*), p , flag));
-	if (flag->d == 1 && flag->h == 1)
-		return (ft_h_int((short int)va_arg(ap, void*), p , flag));
-	if (flag->d == 1 && flag->hh == 1)
-		return (ft_hh_int((signed char)va_arg(ap, void*), p , flag));
-	if (flag->d == 1 && flag->z == 1)
-		return (ft_zd_int((size_t)va_arg(ap, void*), p , flag));
-	if (flag->u == 1 && flag->l == 0 && flag->ll == 0 &&
-		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
-		return (ft_u((unsigned int)va_arg(ap, void*), p , flag));
-	if ((flag->u == 1 && flag->l == 1) || flag->U == 1)
-		return (ft_l_u((unsigned long)va_arg(ap, void*), p , flag));
-	if (flag->u == 1 && (flag->ll == 1 || flag->j == 1))
-		return (ft_ll_u((unsigned long long)va_arg(ap, void*), p , flag));
-	if (flag->u == 1 && flag->h == 1)
-		return (ft_h_u((unsigned short int)va_arg(ap, void*), p , flag));
-	if (flag->u == 1 && flag->hh == 1)
-		return (ft_hh_u((unsigned char)va_arg(ap, void*), p , flag));
+	if (flag->d == 1)
+		return (ft_flag_d(ap, p, flag));
+	if (flag->u == 1 || flag->U == 1)
+		return (ft_flag_u(ap, p, flag));
 	if (flag->o == 1)
-		return (ft_o((int)va_arg(ap, void*), p , flag));
-	if ((flag->x == 1 || flag->X == 1) && flag->l == 0 && flag->ll == 0 &&
-		flag->h == 0 && flag->hh == 0 && flag->j == 0 && flag->z == 0)
-		return (ft_x((int)va_arg(ap, void*), p , flag));
-	if ((flag->x == 1 || flag->X == 1) && flag->l == 1)
-		return (ft_l_x((long int)va_arg(ap, void*), p , flag));
-	if ((flag->x == 1 || flag->X == 1) && (flag->ll == 1))
-		return (ft_ll_x((long long int)va_arg(ap, void*), p , flag));
-	if ((flag->x == 1 || flag->X == 1) && flag->h == 1)
-		return (ft_h_x((short int)va_arg(ap, void*), p , flag));
-	if ((flag->x == 1 || flag->X == 1) && flag->hh == 1)
-		return (ft_hh_x((signed char)va_arg(ap, void*), p , flag));
-	if ((flag->x == 1 || flag->X == 1) && (flag->j == 1))
-		return (ft_j_x((intmax_t)va_arg(ap, void*), p , flag));
-
-
-	if (flag->f == 1)
+		return (ft_o((long int)va_arg(ap, void*), p , flag));
+	if (flag->x == 1 || flag->X == 1)
+		return (ft_flag_x(ap, p, flag));
+	if (flag->f == 1 && flag->L == 0)
 		return (ft_float(va_arg(ap, double), p , flag));
-
+	if (flag->f == 1 && flag->L == 1)
+		return (ft_float((long double)va_arg(ap, double), p , flag));
+	if (flag->p == 1)
+		return (ft_ptr(va_arg(ap, unsigned long int), p , flag));
 	if (flag->percent == 1)
 	{
-		
+		if (flag->tochnost == 0 && flag->dot == 1)
+			flag->tochnost = 1;
 		return (ft_str("%", p, flag));
 	}
 	return (0);
@@ -253,6 +275,11 @@ int		checkwidth(t_flags *flag, char **car, va_list ap)
 	{
 		(*car)++;
 		flag->width = va_arg(ap, int);
+		if (flag->width < 0)
+		{
+			flag->width *= -1;
+			flag->minus = 1;
+		}
 		return (1);
 	}
 	while ((**car >= '0' && **car <= '9') || **car == ' ')
@@ -307,63 +334,74 @@ int		checkmod(t_flags *flag, char **car, va_list ap, t_buff *p)
 	char	*s;
 
 	i = 0;
-	if ((s = ft_strchr("hljzL", **car)) != NULL)
+	if (**car == 'j')
 	{
-		i = 1;
-		if (**car == 'j')
-		{
-	 		(*car)++;
-			flag->j = 1;
-		}
-		if (**car == 'z')
-		{
-	 		(*car)++;
-			flag->z = 1;
-		}
-		if (**car == 'L')
-		{
-	 		(*car)++;
-			flag->L = 1;
-		}
+ 		(*car)++;
+ 		i = 1;
+		flag->j = 1;
+	}
+	if (**car == 'z')
+	{
+ 		(*car)++;
+ 		i = 1;
+		flag->z = 1;
+	}
+	if (**car == 'L')
+	{
+ 		i = 1;
+ 		(*car)++;
+		flag->L = 1;
+	}
+	if (**car == 'l')
+	{
+ 		i = 1;
+		(*car)++;
 		if (**car == 'l')
 		{
+			flag->ll = 1;
 			(*car)++;
-			if (**car == 'l')
-			{
-				flag->ll = 1;
-				(*car)++;
-				i = 2;
-			}
-			else
-				flag->l = 1;
+			i = 2;
 		}
-		else if (**car == 'h')
-		{
-			(*car)++;
-			if (**car == 'h')
-			{
-				flag->hh = 1;
-				(*car)++;
-				i = 2;
-			}
-			else
-				flag->h = 1;
-		}
+		else
+			flag->l = 1;
 	}
-	// else
-	// {
-	// 	printf("else in checkmod\n");
-	// 	(*car)++;
-	// 	while ((s = ft_strchr("dDioOuUxXeEfFgGaAcCsSpn%", **car)) == NULL)
-	// 	{
-	// 		i++;
-	// 		p->buff[p->i++] = **car;
-	// 		(*car)++;
-	// 	}
-	// }
-	
+	else if (**car == 'h')
+	{
+ 		i = 1;
+		(*car)++;
+		if (**car == 'h')
+		{
+			flag->hh = 1;
+			(*car)++;
+			i = 2;
+		}
+		else
+			flag->h = 1;
+	}
+		
 	return (i);
 }
+
+int		ft_minwidth(t_buff *p, char **car, t_flags *flag, int *k)
+{
+	char	s;
+	int		i;
+	int		c;
+
+	c = *k;
+	s = **car;
+	if (flag->width == 0 || (flag->dot == 1 && flag->tochnost == 0 && flag->width == 0))
+		return (c);
+	i = flag->width - 1 < 0 ? 0 : flag->width - 1;
+	(flag->minus == 0 && flag->zero == 0) ? space(p, i) : 0;
+	(flag->minus == 0 && flag->zero == 1) ? fzero(p, i) : 0;
+	p->buff[p->i++] = s;
+	(*car)++;
+	c++;
+	(flag->minus == 1) ? space(p, i) : 0;
+	return (c);
+}
+
 
 int		checkstr(va_list ap, char *car, t_buff *p)
 {
@@ -371,13 +409,15 @@ int		checkstr(va_list ap, char *car, t_buff *p)
 	int		k;
 	
 	car++;
-	k = 0; //счетчик для смещения потом формата
+	k = 0;
 	ft_bzero(&flag, sizeof(flag));
 	k += checkflag(&car, &flag);
 	k += checkwidth(&flag, &car, ap);
 	k += checktochnost(&car, &flag, ap);
 	k += checkmod(&flag, &car, ap, p);
 	k += checktype(&flag, &car);
+	if (flag.minwidth == 1)
+		return (ft_minwidth(p, &car, &flag, &k));
 	checkall(ap, p, &flag);
 	return (k);
 }
