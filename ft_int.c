@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-static int 	number_of_digits(long long int n)
+static int	number_of_digits(long long int n)
 {
-	int count;
-	long long int n2;
+	int				count;
+	long long int	n2;
 
 	count = 0;
 	if (n == -9223372036854775807 - 1)
@@ -30,15 +30,15 @@ static int 	number_of_digits(long long int n)
 		count++;
 		n2 = n2 / 10;
 	}
-	return(count + 1);
+	return (count + 1);
 }
 
-char	*my_putnbr_int(long long int n)
+char		*my_putnbr_int(long long int n)
 {
-	int sign;
-	char *s;
-	int i;
-	long long int n2;
+	int				sign;
+	char			*s;
+	int				i;
+	long long int	n2;
 
 	sign = ((n < 0) ? '-' : '+');
 	i = number_of_digits(n);
@@ -52,149 +52,76 @@ char	*my_putnbr_int(long long int n)
 	else
 		n2 = (sign == '-' ? n * (-1) : n);
 	while (i--)
-	{	
+	{
 		s[i] = n2 % 10 + 48;
 		n2 = n2 / 10;
 	}
 	return (s);
 }
 
-int	fzero(t_buff *p, int size)
+int			fzero(t_buff *p, int size)
 {
 	while (size--)
-	{	
+	{
 		checkbuff(p);
 		p->buff[p->i++] = '0';
 	}
 	return (0);
 }
 
-int		check_int(t_buff *p, t_flags *flag, long long int c)
+void		print_width_before_int(t_buff *p, t_flags *flag, t_float *l)
 {
-	char *s;
-	int sign;
-	int 	kdigit;
-	int k;
+	if (flag->zero == 0)
+	{
+		if (flag->tochnost >= l->kdigit && flag->width >= flag->tochnost)
+			l->k = l->k - (flag->tochnost - l->kdigit);
+		if (flag->tochnost >= l->kdigit && flag->width < flag->tochnost)
+			l->k = flag->tochnost - l->kdigit;
+		else
+			flag->minus == 0 ? space(p, l->k) : 0;
+		if ((l->sign == '-' && flag->plus == 0) || (flag->plus == 1))
+			p->buff[p->i++] = l->sign;
+		if (flag->tochnost >= l->kdigit)
+			fzero(p, flag->tochnost - l->kdigit);
+	}
+	else
+	{
+		if ((l->sign == '-' && flag->plus == 0) || (flag->plus == 1))
+			p->buff[p->i++] = l->sign;
+		if (flag->tochnost >= l->kdigit)
+		{
+			space(p, l->k - (flag->tochnost - l->kdigit));
+			fzero(p, flag->tochnost - l->kdigit);
+		}
+		else
+			flag->minus == 0 ? fzero(p, l->k) : 0;
+	}
+}
 
-	s = my_putnbr_int(c);
-	sign = ((c < 0) ? '-' : '+');
-	kdigit = ft_strlen(s);
+int			check_int(t_buff *p, t_flags *flag, long long int c)
+{
+	t_float	l;
+
+	l.before = my_putnbr_int(c);
+	l.sign = ((c < 0) ? '-' : '+');
+	l.kdigit = ft_strlen(l.before);
 	if (flag->zero == 1 && flag->dot == 1)
 		flag->zero = 0;
 	if (flag->space == 1 && flag->plus == 0)
 	{
-		sign = (sign == '-') ? '-' : ' ';
+		l.sign = (l.sign == '-') ? '-' : ' ';
 		flag->plus = 1;
 	}
-	(flag->plus == 1 || sign == '-') ? flag->width-- : 0;
-	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
-
-	if (flag->zero == 0)
-	{
-		if (flag->tochnost >= kdigit && flag->width >= flag->tochnost)
-			k = k -(flag->tochnost - kdigit);
-		if (flag->tochnost >= kdigit && flag->width < flag->tochnost)
-			k = flag->tochnost - kdigit;
-		else 
-			flag->minus == 0 ? space(p, k) : 0;
-		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
-			p->buff[p->i++] = sign;
-		if (flag->tochnost >= kdigit)
-			fzero(p, flag->tochnost - kdigit);
-	}
-	else
-	{
-		if ((sign == '-' && flag->plus == 0) || (flag->plus == 1))
-			p->buff[p->i++] = sign;
-		if (flag->tochnost >= kdigit)
-		{
-			space(p, k - (flag->tochnost - kdigit));
-			fzero(p, flag->tochnost - kdigit);
-		}
-		else 
-			flag->minus == 0 ? fzero(p, k) : 0;
-	}
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0 && s[0] == '0')
-		s[0] = '\0';
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && s[0] == '0')
-		s[0] = 32;
-	ft_write_buff_and_free(p, s);
-	flag->minus == 1 ? space(p, k) : 0;
-	return (0);
-}
-
-void			*ft_strjoin(char *s1, char *s2)
-{
-	char	*ptr;
-
-	if (s1 != 0 && s2 != 0)
-	{
-		ptr = (char *)malloc(sizeof(char) *
-			(ft_strlen(s1) + ft_strlen(s2) + 1));
-		if (ptr == 0)
-			return (NULL);
-		else
-		{
-			ft_strcpy(ptr, s1);
-			ft_strcat(ptr, s2);
-			return (ptr);
-		}
-	}
-	else
-		return (NULL);
-}
-
-
-
-
-int		ft_zd_int(size_t c, t_buff *p , t_flags *flag)
-{
-	long long int z;
-
-	z = (long long int)c;
-	check_int(p, flag, z);
-	return (0);
-}
-
-int		ft_hh_int(signed char c, t_buff *p, t_flags *flag)
-{
-	long long int z;
-
-	z = (long long int)c;
-	check_int(p, flag, z);
-	return (0);
-}
-
-int		ft_h_int(short int c, t_buff *p, t_flags *flag)
-{
-	long long int z;
-
-	z = (long long int)c;
-	check_int(p, flag, z);
-	return (0);
-}
-
-int		ft_ll_int(long long int c, t_buff *p, t_flags *flag)
-{
-
-	check_int(p, flag, c);
-	return (0);
-}
-
-int		ft_l_int(long int c, t_buff *p, t_flags *flag)
-{
-	long long int z;
-
-	z = (long long int)c;
-	check_int(p, flag, z);
-	return (0);
-}
-
-int		ft_int(int c, t_buff *p, t_flags *flag)
-{
-	long long int z;
-	
-	z = (long long int)c;
-	check_int(p, flag, z);
+	(flag->plus == 1 || l.sign == '-') ? flag->width-- : 0;
+	l.k = (flag->width - l.kdigit < 0 ? 0 : flag->width - l.kdigit);
+	print_width_before_int(p, flag, &l);
+	if (flag->tochnost == 0 && flag->dot == 1
+		&& flag->width == 0 && l.before[0] == '0')
+		l.before[0] = '\0';
+	if (flag->tochnost == 0 && flag->dot == 1
+		&& flag->width != 0 && l.before[0] == '0')
+		l.before[0] = 32;
+	ft_write_buff_and_free(p, l.before);
+	flag->minus == 1 ? space(p, l.k) : 0;
 	return (0);
 }

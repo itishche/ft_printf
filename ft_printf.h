@@ -33,7 +33,17 @@ typedef struct	s_float
 {
 	char		*before;
 	char		*after;
+	int			sign;
+	int			k;
+	long int	i;
+	int			kdigit;
 }				t_float;
+
+typedef struct 	s_int
+{
+	int			i;
+	int			k;
+}				t_int;
 
 typedef struct	s_check_x_struct
 {
@@ -81,12 +91,8 @@ typedef struct	s_flags
 	int			ft_str(void *str, t_buff *p, t_flags *flag);
 	int			ft_char(void *c, t_buff *p, t_flags *flag);
 	void		ft_bzero(void *str, size_t n);
-
-	int			ft_recursive_power(uintmax_t nb, int power);
 	int			ft_o(long int c, t_buff *p, t_flags *flag);
 	int			ft_float(long double c, t_buff *p, t_flags *flag);
-	
-	void		*ft_strjoin(char *s1, char *s2);
 	char		*ft_strcpy(char *dst, char *src);
 	char		*ft_strcat(char *s1, char *s2);
 	char		*ft_itoa_base(uintmax_t value, int base, t_flags *flag);

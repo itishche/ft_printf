@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int	ft_char(void *c, t_buff *p, t_flags *flag)
+int			ft_char(void *c, t_buff *p, t_flags *flag)
 {
-	unsigned char c2;
+	unsigned char	c2;
 
 	if (flag->width != 0)
 		flag->width--;
@@ -27,4 +27,74 @@ int	ft_char(void *c, t_buff *p, t_flags *flag)
 	if (flag->minus == 1)
 		space(p, flag->width);
 	return (0);
+}
+
+static	int	znak(int sign)
+{
+	return (sign == 1 ? -1 : 0);
+}
+
+int			ft_atoi(const char *str)
+{
+	int					i;
+	int					sign;
+	unsigned long long	number;
+
+	i = 0;
+	sign = 1;
+	number = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v'
+		|| str[i] == '\n' || str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		number = (number * 10) + (str[i] - '0');
+		i++;
+	}
+	if (number > 9223372036854775807)
+		return (znak(sign));
+	return (number * sign);
+}
+
+char		*ft_strcpy(char *dst, char *src)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (src[j] != '\0')
+		j++;
+	while (i < j)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+char		*ft_strcat(char *s1, char *s2)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
+	{
+		s1[i] = s2[j];
+		i++;
+		j++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }

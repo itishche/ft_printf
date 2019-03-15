@@ -13,7 +13,6 @@
 NAME	= libftprintf.a
 SRC		=	./ft_printf.c \
 			./ft_char.c \
-			./ft_atoi.c \
 			./ft_str.c \
 			./minilib.c \
 			./ft_int.c \
@@ -27,7 +26,6 @@ SRC		=	./ft_printf.c \
 
 OBJ 	= ./ft_printf.o \
 			./ft_char.o \
-			./ft_atoi.o \
 			./ft_str.o \
 			./minilib.o \
 			./ft_int.o \
@@ -40,7 +38,7 @@ OBJ 	= ./ft_printf.o \
 
 all: $(NAME)
 
-$(NAME): #$(OBJ) includes/ft_printf.h
+$(NAME): $(OBJ) includes/ft_printf.h
 	gcc -c -I ./includes $(SRC)
 	ar rc $@ $(OBJ)
 	ranlib $@

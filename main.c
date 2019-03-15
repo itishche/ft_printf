@@ -37,8 +37,8 @@ int		main(void)
 // printf("4)\no{%-5R12345}\n");
 // ft_printf("m{%-5R12345}\n\n");
 
-// printf("5)\no{%f}{%F}\n", 1.42, 1.42);
-// ft_printf("m{%f}{%F}\n\n", 1.42, 1.42);
+printf("5)\no{%f}\n", 12.4562299999);
+ft_printf("m{%f}\n\n", 12.4562299999);
 
 // printf("6)\no{%f}{%F}\n", 1444565444646.6465424242242);
 // ft_printf("m{%f}{%F}\n\n", 1444565444646.6465424242242);
@@ -49,9 +49,18 @@ int		main(void)
 // printf("o res= %d\n", printf("{%llO, %llO}\n", 0, USHRT_MAX));printf("m res= %d\n", ft_printf("{%llO, %llO}\n", 0, USHRT_MAX));
 
 
-printf("original {%05.Z}\n", 0);
-ft_printf("{%05.Z}\n\n", 0);
-printf("original {%-05.Z}\n", 0);
-ft_printf("{%-05.Z}\n\n", 0);
+// printf("original {%05.Z}\n", 0);
+// ft_printf("{%05.Z}\n\n", 0);
+// printf("original {%-05.Z}\n", 0);
+// ft_printf("{%-05.Z}\n\n", 0);
+// printf("________________________________\n");
+// printf("original result = %i\n", printf("%s\n", ""));
+// printf("my  result = %i\n", ft_printf("%s\n", ""));
+
+// printf("________________________________\n");
+// printf("original result = %i\n", printf("%s\n", ));
+// printf("my  result = %i\n", ft_printf("%s\n", ));
+
+
     return (0);
 }

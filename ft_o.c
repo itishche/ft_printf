@@ -14,55 +14,54 @@
 
 int		ft_o(long int c, t_buff *p, t_flags *flag)
 {
-	char	*s;
-	int		kdigit;
-	int 	k;
+	t_float	l;
 
 	if (c == 0)
 	{
-		s = ft_strnew(1);
-		s[0] = '0';
+		l.before = ft_strnew(1);
+		l.before[0] = '0';
 	}
 	else
-		s = ft_itoa_base((uintmax_t)c, 8, flag);
-	kdigit = ft_strlen(s);	
+		l.before = ft_itoa_base((uintmax_t)c, 8, flag);
+	l.kdigit = ft_strlen(l.before);	
 	if (flag->zero == 1 && flag->dot == 1)
 		flag->zero = 0;
-	k = (flag->width - kdigit < 0 ? 0 : flag->width - kdigit);
-
+	l.k = (flag->width - l.kdigit < 0 ? 0 : flag->width - l.kdigit);
 	if (flag->zero == 0)
 	{
-		if (flag->tochnost >= kdigit && flag->width >= flag->tochnost)
-			k = flag->width - flag->tochnost;
-		if (flag->tochnost >= kdigit && flag->width < flag->tochnost)
-			k = flag->tochnost - kdigit; 
+		if (flag->tochnost >= l.kdigit && flag->width >= flag->tochnost)
+			l.k = flag->width - flag->tochnost;
+		if (flag->tochnost >= l.kdigit && flag->width < flag->tochnost)
+			l.k = flag->tochnost - l.kdigit; 
 		
 		else
-			flag->minus == 0 ? space(p, k) : 0;
-		if (flag->tochnost >= kdigit)
+			flag->minus == 0 ? space(p, l.k) : 0;
+		if (flag->tochnost >= l.kdigit)
 		{
-			fzero(p, flag->tochnost - kdigit);
+			fzero(p, flag->tochnost - l.kdigit);
 			if (flag->width >= flag->tochnost)
-				k = flag->width - flag->tochnost;
+				l.k = flag->width - flag->tochnost;
 			else
-				k = 0;
+				l.k = 0;
 		}
 	}
 	else
 	{
-		if (flag->tochnost >= kdigit)
+		if (flag->tochnost >= l.kdigit)
 		{
-			space(p, k - (flag->tochnost - kdigit));
-			fzero(p, flag->tochnost - kdigit);
+			space(p, l.k - (flag->tochnost - l.kdigit));
+			fzero(p, flag->tochnost - l.kdigit);
 		}
 		else
-			flag->minus == 0 ? fzero(p, k) : 0;
+			flag->minus == 0 ? fzero(p, l.k) : 0;
 	}
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width == 0 && s[0] == '0' && flag->hash == 0)
-		s[0] = '\0';
-	if (flag->tochnost == 0 && flag->dot == 1 && flag->width != 0 && s[0] == '0' && flag->hash == 0)
-		s[0] = 32;
-	ft_write_buff_and_free(p, s);
-	flag->minus == 1 ? space(p, k) : 0;
+	if (flag->tochnost == 0 && flag->dot == 1
+		&& flag->width == 0 && l.before[0] == '0' && flag->hash == 0)
+		l.before[0] = '\0';
+	if (flag->tochnost == 0 && flag->dot == 1 &&
+		flag->width != 0 && l.before[0] == '0' && flag->hash == 0)
+		l.before[0] = 32;
+	ft_write_buff_and_free(p, l.before);
+	flag->minus == 1 ? space(p, l.k) : 0;
 	return (0);
 }

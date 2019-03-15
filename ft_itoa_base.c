@@ -12,28 +12,12 @@
 
 #include "ft_printf.h"
 
-int		ft_recursive_power(uintmax_t nb, int power)
-{
-	if (power < 0)
-		return (0);
-	else
-	{
-		if (power == 0)
-			return (1);
-		else
-		{
-			nb = nb * ft_recursive_power(nb, power - 1);
-			return (nb);
-		}
-	}
-}
-
 char	*ft_itoa_base(uintmax_t value, int base, t_flags *flag)
 {
-	int		sign;
-	char	*str;
-	int		i;
-	uintmax_t temp;
+	int			sign;
+	char		*str;
+	int			i;
+	uintmax_t	temp;
 
 	sign = 0;
 	i = 1;
